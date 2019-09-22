@@ -1,8 +1,13 @@
-"# dring-spot" 
+# dring-spot 
 
-Backend:
-.Net (.net core 2.1)
-Frontend:
-react-native
-Database:
-postresql
+
+## Technology overview
+
+1. Backend:
+    - .Net (.net core 2.1)
+2. Frontend:
+    - react-native
+3. Database:
+    - postresql
+## Project management
+  - [ ] Include trello (or other management system) link 
