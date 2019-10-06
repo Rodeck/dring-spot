@@ -10,7 +10,8 @@
 3. Database:
     - postresql
 ## Project management
-  - [ ] Include trello (or other management system) link 
+  [HeySpace](https://app.hey.space/projects/4790edab-f577-4052-a1dc-aa8e9a16054f) - task management and chat tool for the project
+  
   
   Development requirements:
   -  Visual Studio Code
