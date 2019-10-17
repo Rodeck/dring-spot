@@ -19,3 +19,5 @@
   -  .NET Core SDK 2.2
   -  PostgreSQL
   -  ExpoClient App for Android or iOS
+  
+ [Doc](https://docs.google.com/document/d/1FcQTzrqknLfCmG1Na9QcXNGaWxyvVXQ0WuGzo3cTTK4/edit#heading=h.n63kq6ti6ndx) - project documentation
