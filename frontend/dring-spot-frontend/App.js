@@ -1,10 +1,11 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import FetchExample from './Components/UsersComponent'
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>DringSpot, szmato!</Text>
+      <FetchExample> </FetchExample>
     </View>
   );
 }
