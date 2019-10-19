@@ -7,7 +7,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/dring-spot-backend/dring-spot-backend.csproj",
+                "${workspaceFolder}/src/DringSpot.WebApi/DringSpot.WebApi.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],

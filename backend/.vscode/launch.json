@@ -10,9 +10,9 @@
             "request": "launch",
             "preLaunchTask": "build",
             // If you have changed target frameworks, make sure to update the program path.
-            "program": "${workspaceFolder}/dring-spot-backend/bin/Debug/netcoreapp3.0/dring-spot-backend.dll",
+            "program": "${workspaceFolder}/src/DringSpot.WebApi/bin/Debug/netcoreapp3.0/DringSpot.WebApi.dll",
             "args": [],
-            "cwd": "${workspaceFolder}/dring-spot-backend",
+            "cwd": "${workspaceFolder}/src/DringSpot.WebApi",
             "stopAtEntry": false,
             // Enable launching a web browser when ASP.NET Core starts. For more information: https://aka.ms/VSCode-CS-LaunchJson-WebBrowser
             "serverReadyAction": {
