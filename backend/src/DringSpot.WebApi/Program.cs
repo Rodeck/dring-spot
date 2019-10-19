@@ -21,7 +21,7 @@ namespace DringSpot.WebApi
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
-                    webBuilder.UseUrls("http://localhost:5005");
+                    webBuilder.UseUrls("http://192.168.43.215:5005");
                 });
     }
 }
