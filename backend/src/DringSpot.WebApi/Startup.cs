@@ -11,7 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace dring_spot_backend
+namespace DringSpot.WebApi
 {
     public class Startup
     {

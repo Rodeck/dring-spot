@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
-namespace dring_spot_backend.Controllers
+namespace DringSpot.WebApi.Controllers
 {
     [ApiController]
     [Route("[controller]")]
