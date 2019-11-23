@@ -7,6 +7,12 @@ namespace DringSpot.DataAccess.EF
     {
         public DbSet<User> Users { get; set; }
 
+        public DbSet<MeetingPlace> Places { get; set; }
+
+        public DbSet<Category> Categories { get; set; }
+
+        public DbSet<Review> Reviews { get; set; }
+
         public DringContext (DbContextOptions<DringContext> options)
             : base(options)
         {

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DringSpot.Abstract;
 using DringSpot.DataAccess.EF;
 using DringSpot.DataAccess.Models;
 using DringSpot.WebApi.DTO;
@@ -11,7 +12,6 @@ using Microsoft.Extensions.Logging;
 
 namespace DringSpot.WebApi.Controllers
 {
-    [Authorize]
     [ApiController]
     [Route("[controller]")]
     public class UserController: ControllerBase
@@ -29,19 +29,13 @@ namespace DringSpot.WebApi.Controllers
         [HttpPost]
         public async Task AddUser([FromBody] UserDTO userData)
         {
-            await _repository.Add(new User() 
-            {
-                Email = userData.Email,
-                FirstName = userData.FirstName,
-                LastName = userData.LastName,
-                ImageUrl = userData.ImageUrl
-            });
+            await _repository.Add(userData.Email, userData.ImageUrl, userData.Uid, userData.FirstName, userData.LastName);
         }
 
         [HttpGet]
-        public IEnumerable<User> Users()
+        public Task<IEnumerable<User>> Users()
         {
-            return _repository.Collection;
+            return _repository.Load();
         }
 
         [HttpPost]

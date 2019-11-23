@@ -2643,10 +2643,24 @@
           "lib/netstandard1.3/System.Xml.XmlSerializer.dll": {}
         }
       },
+      "DringSpot.Abstract/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.0",
+        "dependencies": {
+          "DringSpot.DataAccess.Models": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/DringSpot.Abstract.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/DringSpot.Abstract.dll": {}
+        }
+      },
       "DringSpot.DataAccess.EF/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.0",
         "dependencies": {
+          "DringSpot.Abstract": "1.0.0",
           "DringSpot.DataAccess.Models": "1.0.0",
           "Microsoft.EntityFrameworkCore": "3.0.0",
           "Microsoft.EntityFrameworkCore.SqlServer": "3.0.0"
@@ -4022,11 +4036,12 @@
       ]
     },
     "runtime.rhel.7-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {
-      "sha512": "T5NvFgmHX0WH4c7lP72krsnk+IJI10vJf2j2twGE+5QBRA4RyRAgD+ZjEgdmpLOjW4B+nZGaadewTCUcR899OQ==",
+      "sha512": "nyFNiCk/r+VOiIqreLix8yN+q3Wga9+SE8BCgkf+2BwEKiNx6DyvFjCgkfV743/grxv8jHJ8gUK4XEQw7yzRYg==",
       "type": "package",
       "path": "runtime.rhel.7-x64.runtime.native.system.security.cryptography.openssl/4.3.0",
       "files": [
         ".nupkg.metadata",
+        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "runtime.rhel.7-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
@@ -4301,7 +4316,7 @@
       ]
     },
     "System.Collections.NonGeneric/4.3.0": {
-      "sha512": "LE/oChpRvkSi3U25u0KnJcI44JeDZ1QJCyN4qFDx2uusEypdqR24w7lKYw21eYe5esuCBuc862wRmpF63Yy1KQ==",
+      "sha512": "prtjIEMhGUnQq6RnPEYLpFt8AtLbp9yq2zxOSrY7KJJZrw25Fi97IzBqY7iqssbM61Ek5b8f3MG/sG1N2sN5KA==",
       "type": "package",
       "path": "system.collections.nongeneric/4.3.0",
       "files": [
@@ -8115,6 +8130,11 @@
         "system.xml.xmlserializer.nuspec"
       ]
     },
+    "DringSpot.Abstract/1.0.0": {
+      "type": "project",
+      "path": "../DringSpot.Abstract/DringSpot.Abstract.csproj",
+      "msbuildProject": "../DringSpot.Abstract/DringSpot.Abstract.csproj"
+    },
     "DringSpot.DataAccess.EF/1.0.0": {
       "type": "project",
       "path": "../DringSpot.DataAccess.EF/DringSpot.DataAccess.EF.csproj",
@@ -8136,40 +8156,35 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Gabriel Pająk\\.nuget\\packages\\": {},
-    "C:\\Microsoft\\Xamarin\\NuGet\\": {},
+    "C:\\Users\\gpajak\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\projects\\dring-spot\\backend\\src\\DringSpot.WebApi\\DringSpot.WebApi.csproj",
+      "projectUniqueName": "C:\\private\\dring-spot\\dring-spot\\backend\\src\\DringSpot.WebApi\\DringSpot.WebApi.csproj",
       "projectName": "DringSpot.WebApi",
-      "projectPath": "C:\\projects\\dring-spot\\backend\\src\\DringSpot.WebApi\\DringSpot.WebApi.csproj",
-      "packagesPath": "C:\\Users\\Gabriel Pająk\\.nuget\\packages\\",
-      "outputPath": "C:\\projects\\dring-spot\\backend\\src\\DringSpot.WebApi\\obj\\",
+      "projectPath": "C:\\private\\dring-spot\\dring-spot\\backend\\src\\DringSpot.WebApi\\DringSpot.WebApi.csproj",
+      "packagesPath": "C:\\Users\\gpajak\\.nuget\\packages\\",
+      "outputPath": "C:\\private\\dring-spot\\dring-spot\\backend\\src\\DringSpot.WebApi\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Microsoft\\Xamarin\\NuGet\\",
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\Gabriel Pająk\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        "C:\\Users\\gpajak\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "https://www.nuget.org/api/v2/": {}
+        "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "netcoreapp3.0": {
           "projectReferences": {
-            "C:\\projects\\dring-spot\\backend\\src\\DringSpot.DataAccess.EF\\DringSpot.DataAccess.EF.csproj": {
-              "projectPath": "C:\\projects\\dring-spot\\backend\\src\\DringSpot.DataAccess.EF\\DringSpot.DataAccess.EF.csproj"
+            "C:\\private\\dring-spot\\dring-spot\\backend\\src\\DringSpot.DataAccess.EF\\DringSpot.DataAccess.EF.csproj": {
+              "projectPath": "C:\\private\\dring-spot\\dring-spot\\backend\\src\\DringSpot.DataAccess.EF\\DringSpot.DataAccess.EF.csproj"
             }
           }
         }
@@ -8222,7 +8237,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.101\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
       }
     }
   }

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DringSpot.Abstract;
 using DringSpot.DataAccess.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -58,6 +59,25 @@ namespace DringSpot.DataAccess.EF
         public Task RemoveFriend(int userId, int friendId)
         {
             throw new System.NotImplementedException();
+        }
+
+        public async Task Add(string email, string image, string uid, string firstName, string lastName)
+        {
+            await _context.Users.AddAsync(new User() 
+            {
+                Email = email,
+                FirstName = firstName,
+                ImageUrl = image,
+                Uid = uid,
+                LastName = lastName,
+            });
+
+            await _context.SaveChangesAsync();
+        }
+
+        public Task<IEnumerable<User>> Load() 
+        {
+            return Task.FromResult(_context.Users.ToList().AsEnumerable());
         }
     }
 }

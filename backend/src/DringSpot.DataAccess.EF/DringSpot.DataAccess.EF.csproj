@@ -19,6 +19,7 @@
   
   <ItemGroup>
     <ProjectReference Include="..\DringSpot.DataAccess.Models\DringSpot.DataAccess.Models.csproj" />
+    <ProjectReference Include="..\DringSpot.Abstract\DringSpot.Abstract.csproj" />
   </ItemGroup>
 
 </Project>

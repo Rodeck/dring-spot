@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DringSpot.Abstract;
 using DringSpot.DataAccess.EF;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -51,6 +52,7 @@ namespace DringSpot.WebApi
                 });
 
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IMeetingPlaceService, MeetingPlaceService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
