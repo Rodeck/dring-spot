@@ -4,12 +4,14 @@ using System.Threading.Tasks;
 using DringSpot.DataAccess.EF;
 using DringSpot.DataAccess.Models;
 using DringSpot.WebApi.DTO;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
 namespace DringSpot.WebApi.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("[controller]")]
     public class UserController: ControllerBase
@@ -23,6 +25,7 @@ namespace DringSpot.WebApi.Controllers
             _repository = repository;
         }
 
+        [AllowAnonymous]
         [HttpPost]
         public async Task AddUser([FromBody] UserDTO userData)
         {

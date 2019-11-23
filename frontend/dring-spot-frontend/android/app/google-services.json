@@ -1,0 +1,40 @@
+{
+    "project_info": {
+      "project_number": "671972225716",
+      "firebase_url": "https://dringspotapp-d8e8d.firebaseio.com",
+      "project_id": "dringspotapp-d8e8d",
+      "storage_bucket": "dringspotapp-d8e8d.appspot.com"
+    },
+    "client": [
+      {
+        "client_info": {
+          "mobilesdk_app_id": "1:671972225716:android:cbb097bfd2c17b52a0dde1",
+          "android_client_info": {
+            "package_name": "com.dringspot"
+          }
+        },
+        "oauth_client": [
+          {
+            "client_id": "671972225716-d643i1jgudikgii9bdu6gufirroflqg1.apps.googleusercontent.com",
+            "client_type": 3
+          }
+        ],
+        "api_key": [
+          {
+            "current_key": "AIzaSyDYLGDmu55813o_hCTYKMJhYE8yJbgnswc"
+          }
+        ],
+        "services": {
+          "appinvite_service": {
+            "other_platform_oauth_client": [
+              {
+                "client_id": "671972225716-d643i1jgudikgii9bdu6gufirroflqg1.apps.googleusercontent.com",
+                "client_type": 3
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "configuration_version": "1"
+  }

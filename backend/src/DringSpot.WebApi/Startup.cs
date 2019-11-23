@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DringSpot.DataAccess.EF;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -12,6 +13,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
 
 namespace DringSpot.WebApi
 {
@@ -33,6 +35,21 @@ namespace DringSpot.WebApi
                     throw new Exception("Connection string is required!"),
                     b => b.MigrationsAssembly(typeof(DringContext).Assembly.FullName)));
 
+            services
+                .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options =>
+                {
+                    options.Authority = "https://securetoken.google.com/dringspotapp-d8e8d";
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuer = true,
+                        ValidIssuer = "https://securetoken.google.com/dringspotapp-d8e8d",
+                        ValidateAudience = true,
+                        ValidAudience = "dringspotapp-d8e8d",
+                        ValidateLifetime = true
+                    };
+                });
+
             services.AddScoped<IUserRepository, UserRepository>();
         }
 
@@ -44,9 +61,18 @@ namespace DringSpot.WebApi
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseCors(builder => {
+                builder
+                    .AllowAnyHeader()
+                    .AllowAnyMethod()
+                    .AllowAnyOrigin();
+            });
+
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseAuthentication();
 
             app.UseAuthorization();
 

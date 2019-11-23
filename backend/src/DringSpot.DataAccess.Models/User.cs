@@ -20,6 +20,8 @@ namespace DringSpot.DataAccess.Models
 
         public string Email { get; set; }
 
+        public string Uid { get; set; }
+
         public virtual ICollection<Friend> Friends { get; set; }
 
         public virtual ICollection<FavouredPlace> FavouredPlaces { get; set; }
