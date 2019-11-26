@@ -52,7 +52,7 @@ namespace DringSpot.WebApi
                 });
 
             services.AddScoped<IUserRepository, UserRepository>();
-            services.AddScoped<IMeetingPlaceService, MeetingPlaceService>();
+            services.AddScoped<IMeetingPlaceRepository, MeetingPlaceRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

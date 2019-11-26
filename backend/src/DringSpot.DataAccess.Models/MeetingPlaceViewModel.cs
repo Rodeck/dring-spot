@@ -8,9 +8,9 @@ namespace DringSpot.DataAccess.Models
 
         public string Name { get; set; }
 
-        public string Latitude { get; set; }
+        public double Latitude { get; set; }
 
-        public string Longitude { get; set; }
+        public double Longitude { get; set; }
 
         public ICollection<CategoryDTO> Categories { get; set; }
     }

@@ -9,20 +9,21 @@ using Microsoft.Extensions.Logging;
 
 namespace DringSpot.DataAccess.EF
 {
-    public class MeetingPlaceService : IMeetingPlaceService
+    public class MeetingPlaceRepository : IMeetingPlaceRepository
     {
         private DringContext _context;
-        private ILogger<MeetingPlaceService> _logger;
+        private ILogger<MeetingPlaceRepository> _logger;
 
-        public MeetingPlaceService(DringContext context, ILogger<MeetingPlaceService> logger)
+        public MeetingPlaceRepository(DringContext context, ILogger<MeetingPlaceRepository> logger)
         {
             _context = context;
             _logger = logger;
         }
+        
         public async Task AddCategoryToPlace(int placeId, string catergoryName)
         {
             var place = await _context.Places.
-                Include(x => x.Categories)
+                Include(x => x.Categories) 
                 .SingleAsync(x => x.Id == placeId);
 
             if (place == null)
@@ -34,18 +35,19 @@ namespace DringSpot.DataAccess.EF
             if (category == null)
                 throw new Exception($"Category with name: { catergoryName } not found!");
 
-            place.Categories.Add(category);
+            place.Categories.Add(new CategoryPlace() { Category = category });
 
             await _context.SaveChangesAsync();
         }
 
-        public async Task AddPlace(string lat, string lon, string name, params string[] categories)
+        public async Task AddPlace(double lat, double lon, string name, params string[] categories)
         {
-            var categoriesList = new List<Category>();
+            var categoriesList = new List<CategoryPlace>();
 
             foreach(var cat in categories)
             {
-                categoriesList.Add(await _context.Categories.SingleAsync(x => x.Name == cat));
+                var category = await _context.Categories.SingleAsync(x => x.Name == cat);
+                categoriesList.Add(new CategoryPlace() { Category = category } );
             }
 
             await _context.Places.AddAsync(new MeetingPlace() 
@@ -83,16 +85,23 @@ namespace DringSpot.DataAccess.EF
             await _context.Reviews.AddAsync(review);
         }
 
+        public IAsyncEnumerable<CategoryResponseModel> GetCategories()
+        {
+            return _context.Categories.Select(x => new CategoryResponseModel() { Name = x.Name, Icon = x.Icon }).AsAsyncEnumerable();
+        }
+
         public async Task<List<MeetingPlaceViewModel>> GetPlaces()
         {
-            return (await _context.Places
+            var places = await _context.Places
                 .Include(x => x.Categories)
+                    .ThenInclude(c => c.Category)
                 .Include(x => x.Reviews)
                     .ThenInclude(y => y.Votees)
-                .ToListAsync())
+                .ToListAsync();
+            return places
                 .Select(x => new MeetingPlaceViewModel()
                 {
-                    Categories = x.Categories.Select(c => new CategoryDTO() { Name = c.Name }).ToList(),
+                    Categories = x.Categories.ToList().Select(c => new CategoryDTO() { Name = c.Category.Name }).ToList(),
                     Id = x.Id,
                     Latitude = x.Latitude,
                     Longitude = x.Longitude,
@@ -101,9 +110,21 @@ namespace DringSpot.DataAccess.EF
                 .ToList();
         }
 
-        public Task<List<MeetingPlaceViewModel>> GetPlacesWithin(float range)
+        public async Task<List<MeetingPlaceViewModel>> GetPlacesWithin(double lat, double lon, double dist)
         {
-            throw new System.NotImplementedException();
+            var placesIds = await _context.GetPlacesWithin(lat, lon, dist).Select(x => x.Id).ToListAsync();
+
+            return (await _context.Places
+                .Include(x => x.Categories)
+                .Where(x => placesIds.Contains(x.Id)).ToListAsync()).Select(x => 
+                new MeetingPlaceViewModel()
+                {
+                    Id = x.Id,
+                    Categories = x.Categories.Select(y => new CategoryDTO() { Name = y.Category.Name }).ToList(),
+                    Latitude = x.Latitude,
+                    Longitude = x.Longitude,
+                    Name = x.Name,
+                }).ToList();
         }
 
         public Task VoteForReview(int reviewId, int votee, DateTime date)

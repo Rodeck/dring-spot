@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using DringSpot.Abstract;
+using DringSpot.DataAccess.EF;
 using DringSpot.DataAccess.Models;
 using DringSpot.WebApi.DTO;
 using Microsoft.AspNetCore.Authorization;
@@ -14,9 +15,9 @@ namespace DringSpot.WebApi.Controllers
     public class MeetingPlaceController: ControllerBase
     {
         private readonly ILogger<MeetingPlaceController> _logger;
-        private readonly IMeetingPlaceService _service;
+        private readonly IMeetingPlaceRepository _service;
 
-        public MeetingPlaceController(ILogger<MeetingPlaceController> logger, IMeetingPlaceService service)
+        public MeetingPlaceController(ILogger<MeetingPlaceController> logger, IMeetingPlaceRepository service)
         {
             _logger = logger;
             _service = service;
@@ -29,9 +30,30 @@ namespace DringSpot.WebApi.Controllers
         }
 
         [HttpGet]
-        public Task<List<MeetingPlaceViewModel>> Users()
+        public Task<List<MeetingPlaceViewModel>> Load()
         {
             return _service.GetPlaces();
+        }
+
+        [HttpGet]
+        [Route("PlacesWithin/{lat:double}/{lon:double}/{range:double}")]
+        public Task<List<MeetingPlaceViewModel>> GetPlaceWithin(double lat, double lon, double range)
+        {
+            return _service.GetPlacesWithin(lat, lon, range);
+        }
+
+        [HttpPost]
+        [Route("AddCategory/{placeId}")]
+        public Task GetPlaceWithin(int placeId, [FromBody] CategoryDTO category)
+        {
+            return _service.AddCategoryToPlace(placeId, category.Name);
+        }
+
+        [HttpGet]
+        [Route("GetCategories")]
+        public IAsyncEnumerable<CategoryResponseModel> GetCategories()
+        {
+            return _service.GetCategories();
         }
     }
 }

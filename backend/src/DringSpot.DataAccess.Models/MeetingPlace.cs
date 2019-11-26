@@ -6,16 +6,23 @@ namespace DringSpot.DataAccess.Models
     {
         public int Id { get; set; }
 
-        public string Latitude { get; set; }
+        public double Latitude { get; set; }
 
-        public string Longitude { get; set; }
+        public double Longitude { get; set; }
 
         public string Name { get; set; }
 
-        public ICollection<Category> Categories { get; set; }
+        public virtual ICollection<CategoryPlace> Categories { get; set; }
         
-        public ICollection<Review> Reviews { get; set; } 
+        public virtual ICollection<Review> Reviews { get; set; } 
 
-        public ICollection<Votee> Votees { get; set; } 
+        public virtual ICollection<Votee> Votees { get; set; } 
+
+        public MeetingPlace()
+        {
+            Categories = new HashSet<CategoryPlace>();
+            Reviews = new HashSet<Review>();
+            Votees = new HashSet<Votee>();
+        }
     }
 }

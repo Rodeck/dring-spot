@@ -4,14 +4,16 @@ using DringSpot.DataAccess.EF;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DringSpot.DataAccess.EF.Migrations
 {
     [DbContext(typeof(DringContext))]
-    partial class DringContextModelSnapshot : ModelSnapshot
+    [Migration("20191126162717_AddPlaces")]
+    partial class AddPlaces
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -29,27 +31,17 @@ namespace DringSpot.DataAccess.EF.Migrations
                     b.Property<string>("Icon")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("MeetingPlaceId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories");
-                });
-
-            modelBuilder.Entity("DringSpot.DataAccess.Models.CategoryPlace", b =>
-                {
-                    b.Property<int>("CategoryId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("MeetingPlaceId")
-                        .HasColumnType("int");
-
-                    b.HasKey("CategoryId", "MeetingPlaceId");
-
                     b.HasIndex("MeetingPlaceId");
 
-                    b.ToTable("CategoryPlace");
+                    b.ToTable("Categories");
                 });
 
             modelBuilder.Entity("DringSpot.DataAccess.Models.FavouredPlace", b =>
@@ -111,18 +103,6 @@ namespace DringSpot.DataAccess.EF.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Places");
-                });
-
-            modelBuilder.Entity("DringSpot.DataAccess.Models.PlaceWithinFindModel", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.HasKey("Id");
-
-                    b.ToTable("PlacesWithin");
                 });
 
             modelBuilder.Entity("DringSpot.DataAccess.Models.Review", b =>
@@ -212,19 +192,11 @@ namespace DringSpot.DataAccess.EF.Migrations
                     b.ToTable("Votee");
                 });
 
-            modelBuilder.Entity("DringSpot.DataAccess.Models.CategoryPlace", b =>
+            modelBuilder.Entity("DringSpot.DataAccess.Models.Category", b =>
                 {
-                    b.HasOne("DringSpot.DataAccess.Models.Category", "Category")
-                        .WithMany("Places")
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("DringSpot.DataAccess.Models.MeetingPlace", "MeetingPlace")
+                    b.HasOne("DringSpot.DataAccess.Models.MeetingPlace", null)
                         .WithMany("Categories")
-                        .HasForeignKey("MeetingPlaceId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("MeetingPlaceId");
                 });
 
             modelBuilder.Entity("DringSpot.DataAccess.Models.FavouredPlace", b =>

@@ -1,35 +1,39 @@
 {
   "format": 1,
   "restore": {
-    "C:\\private\\dring-spot\\dring-spot\\backend\\src\\DringSpot.WebApi\\DringSpot.WebApi.csproj": {}
+    "C:\\projects\\dring-spot\\backend\\src\\DringSpot.WebApi\\DringSpot.WebApi.csproj": {}
   },
   "projects": {
-    "C:\\private\\dring-spot\\dring-spot\\backend\\src\\DringSpot.Abstract\\DringSpot.Abstract.csproj": {
+    "C:\\projects\\dring-spot\\backend\\src\\DringSpot.Abstract\\DringSpot.Abstract.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\private\\dring-spot\\dring-spot\\backend\\src\\DringSpot.Abstract\\DringSpot.Abstract.csproj",
+        "projectUniqueName": "C:\\projects\\dring-spot\\backend\\src\\DringSpot.Abstract\\DringSpot.Abstract.csproj",
         "projectName": "DringSpot.Abstract",
-        "projectPath": "C:\\private\\dring-spot\\dring-spot\\backend\\src\\DringSpot.Abstract\\DringSpot.Abstract.csproj",
-        "packagesPath": "C:\\Users\\gpajak\\.nuget\\packages\\",
-        "outputPath": "C:\\private\\dring-spot\\dring-spot\\backend\\src\\DringSpot.Abstract\\obj\\",
+        "projectPath": "C:\\projects\\dring-spot\\backend\\src\\DringSpot.Abstract\\DringSpot.Abstract.csproj",
+        "packagesPath": "C:\\Users\\Gabriel Pająk\\.nuget\\packages\\",
+        "outputPath": "C:\\projects\\dring-spot\\backend\\src\\DringSpot.Abstract\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet\\",
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\gpajak\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Gabriel Pająk\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.0"
         ],
         "sources": {
-          "https://api.nuget.org/v3/index.json": {}
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://www.nuget.org/api/v2/": {}
         },
         "frameworks": {
           "netcoreapp3.0": {
             "projectReferences": {
-              "C:\\private\\dring-spot\\dring-spot\\backend\\src\\DringSpot.DataAccess.Models\\DringSpot.DataAccess.Models.csproj": {
-                "projectPath": "C:\\private\\dring-spot\\dring-spot\\backend\\src\\DringSpot.DataAccess.Models\\DringSpot.DataAccess.Models.csproj"
+              "C:\\projects\\dring-spot\\backend\\src\\DringSpot.DataAccess.Models\\DringSpot.DataAccess.Models.csproj": {
+                "projectPath": "C:\\projects\\dring-spot\\backend\\src\\DringSpot.DataAccess.Models\\DringSpot.DataAccess.Models.csproj"
               }
             }
           }
@@ -57,39 +61,43 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\private\\dring-spot\\dring-spot\\backend\\src\\DringSpot.DataAccess.EF\\DringSpot.DataAccess.EF.csproj": {
+    "C:\\projects\\dring-spot\\backend\\src\\DringSpot.DataAccess.EF\\DringSpot.DataAccess.EF.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\private\\dring-spot\\dring-spot\\backend\\src\\DringSpot.DataAccess.EF\\DringSpot.DataAccess.EF.csproj",
+        "projectUniqueName": "C:\\projects\\dring-spot\\backend\\src\\DringSpot.DataAccess.EF\\DringSpot.DataAccess.EF.csproj",
         "projectName": "DringSpot.DataAccess.EF",
-        "projectPath": "C:\\private\\dring-spot\\dring-spot\\backend\\src\\DringSpot.DataAccess.EF\\DringSpot.DataAccess.EF.csproj",
-        "packagesPath": "C:\\Users\\gpajak\\.nuget\\packages\\",
-        "outputPath": "C:\\private\\dring-spot\\dring-spot\\backend\\src\\DringSpot.DataAccess.EF\\obj\\",
+        "projectPath": "C:\\projects\\dring-spot\\backend\\src\\DringSpot.DataAccess.EF\\DringSpot.DataAccess.EF.csproj",
+        "packagesPath": "C:\\Users\\Gabriel Pająk\\.nuget\\packages\\",
+        "outputPath": "C:\\projects\\dring-spot\\backend\\src\\DringSpot.DataAccess.EF\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet\\",
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\gpajak\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Gabriel Pająk\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.0"
         ],
         "sources": {
-          "https://api.nuget.org/v3/index.json": {}
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://www.nuget.org/api/v2/": {}
         },
         "frameworks": {
           "netcoreapp3.0": {
             "projectReferences": {
-              "C:\\private\\dring-spot\\dring-spot\\backend\\src\\DringSpot.Abstract\\DringSpot.Abstract.csproj": {
-                "projectPath": "C:\\private\\dring-spot\\dring-spot\\backend\\src\\DringSpot.Abstract\\DringSpot.Abstract.csproj"
+              "C:\\projects\\dring-spot\\backend\\src\\DringSpot.Abstract\\DringSpot.Abstract.csproj": {
+                "projectPath": "C:\\projects\\dring-spot\\backend\\src\\DringSpot.Abstract\\DringSpot.Abstract.csproj"
               },
-              "C:\\private\\dring-spot\\dring-spot\\backend\\src\\DringSpot.DataAccess.Models\\DringSpot.DataAccess.Models.csproj": {
-                "projectPath": "C:\\private\\dring-spot\\dring-spot\\backend\\src\\DringSpot.DataAccess.Models\\DringSpot.DataAccess.Models.csproj"
+              "C:\\projects\\dring-spot\\backend\\src\\DringSpot.DataAccess.Models\\DringSpot.DataAccess.Models.csproj": {
+                "projectPath": "C:\\projects\\dring-spot\\backend\\src\\DringSpot.DataAccess.Models\\DringSpot.DataAccess.Models.csproj"
               }
             }
           }
@@ -139,30 +147,34 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\private\\dring-spot\\dring-spot\\backend\\src\\DringSpot.DataAccess.Models\\DringSpot.DataAccess.Models.csproj": {
+    "C:\\projects\\dring-spot\\backend\\src\\DringSpot.DataAccess.Models\\DringSpot.DataAccess.Models.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\private\\dring-spot\\dring-spot\\backend\\src\\DringSpot.DataAccess.Models\\DringSpot.DataAccess.Models.csproj",
+        "projectUniqueName": "C:\\projects\\dring-spot\\backend\\src\\DringSpot.DataAccess.Models\\DringSpot.DataAccess.Models.csproj",
         "projectName": "DringSpot.DataAccess.Models",
-        "projectPath": "C:\\private\\dring-spot\\dring-spot\\backend\\src\\DringSpot.DataAccess.Models\\DringSpot.DataAccess.Models.csproj",
-        "packagesPath": "C:\\Users\\gpajak\\.nuget\\packages\\",
-        "outputPath": "C:\\private\\dring-spot\\dring-spot\\backend\\src\\DringSpot.DataAccess.Models\\obj\\",
+        "projectPath": "C:\\projects\\dring-spot\\backend\\src\\DringSpot.DataAccess.Models\\DringSpot.DataAccess.Models.csproj",
+        "packagesPath": "C:\\Users\\Gabriel Pająk\\.nuget\\packages\\",
+        "outputPath": "C:\\projects\\dring-spot\\backend\\src\\DringSpot.DataAccess.Models\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet\\",
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\gpajak\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Gabriel Pająk\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.0"
         ],
         "sources": {
-          "https://api.nuget.org/v3/index.json": {}
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://www.nuget.org/api/v2/": {}
         },
         "frameworks": {
           "netcoreapp3.0": {
@@ -192,36 +204,40 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\private\\dring-spot\\dring-spot\\backend\\src\\DringSpot.WebApi\\DringSpot.WebApi.csproj": {
+    "C:\\projects\\dring-spot\\backend\\src\\DringSpot.WebApi\\DringSpot.WebApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\private\\dring-spot\\dring-spot\\backend\\src\\DringSpot.WebApi\\DringSpot.WebApi.csproj",
+        "projectUniqueName": "C:\\projects\\dring-spot\\backend\\src\\DringSpot.WebApi\\DringSpot.WebApi.csproj",
         "projectName": "DringSpot.WebApi",
-        "projectPath": "C:\\private\\dring-spot\\dring-spot\\backend\\src\\DringSpot.WebApi\\DringSpot.WebApi.csproj",
-        "packagesPath": "C:\\Users\\gpajak\\.nuget\\packages\\",
-        "outputPath": "C:\\private\\dring-spot\\dring-spot\\backend\\src\\DringSpot.WebApi\\obj\\",
+        "projectPath": "C:\\projects\\dring-spot\\backend\\src\\DringSpot.WebApi\\DringSpot.WebApi.csproj",
+        "packagesPath": "C:\\Users\\Gabriel Pająk\\.nuget\\packages\\",
+        "outputPath": "C:\\projects\\dring-spot\\backend\\src\\DringSpot.WebApi\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet\\",
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\gpajak\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Gabriel Pająk\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.0"
         ],
         "sources": {
-          "https://api.nuget.org/v3/index.json": {}
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://www.nuget.org/api/v2/": {}
         },
         "frameworks": {
           "netcoreapp3.0": {
             "projectReferences": {
-              "C:\\private\\dring-spot\\dring-spot\\backend\\src\\DringSpot.DataAccess.EF\\DringSpot.DataAccess.EF.csproj": {
-                "projectPath": "C:\\private\\dring-spot\\dring-spot\\backend\\src\\DringSpot.DataAccess.EF\\DringSpot.DataAccess.EF.csproj"
+              "C:\\projects\\dring-spot\\backend\\src\\DringSpot.DataAccess.EF\\DringSpot.DataAccess.EF.csproj": {
+                "projectPath": "C:\\projects\\dring-spot\\backend\\src\\DringSpot.DataAccess.EF\\DringSpot.DataAccess.EF.csproj"
               }
             }
           }
@@ -274,7 +290,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     }

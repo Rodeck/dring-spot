@@ -122,3 +122,5 @@ c:\private\dring-spot\dring-spot\backend\src\DringSpot.WebApi\obj\Debug\netcorea
 c:\private\dring-spot\dring-spot\backend\src\DringSpot.WebApi\obj\Debug\netcoreapp3.0\DringSpot.WebApi.pdb
 C:\private\dring-spot\dring-spot\backend\src\DringSpot.WebApi\bin\Debug\netcoreapp3.0\DringSpot.Abstract.dll
 C:\private\dring-spot\dring-spot\backend\src\DringSpot.WebApi\bin\Debug\netcoreapp3.0\DringSpot.Abstract.pdb
+C:\projects\dring-spot\backend\src\DringSpot.WebApi\bin\Debug\netcoreapp3.0\DringSpot.Abstract.dll
+C:\projects\dring-spot\backend\src\DringSpot.WebApi\bin\Debug\netcoreapp3.0\DringSpot.Abstract.pdb
