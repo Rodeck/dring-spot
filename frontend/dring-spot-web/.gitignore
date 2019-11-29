@@ -17,7 +17,7 @@
 .settings/
 *.sublime-workspace
 
-./src/environments/*
+/src/environments/*
 
 # IDE - VSCode
 .vscode/*
