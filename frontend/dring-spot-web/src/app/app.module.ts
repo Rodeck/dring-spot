@@ -51,7 +51,7 @@ import { PlaceDetailsComponent } from './components/place-details/place-details.
     AngularFirestoreModule,
     ReactiveFormsModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyBNhCkkd1CD4rSo5P2VVCVgr9eOwl6yxu0'
+      apiKey: environment.mapKey
     }),
     HttpClientModule,
     FormsModule
