@@ -45,6 +45,9 @@ namespace DringSpot.DataAccess.EF.Migrations
                     b.Property<int>("MeetingPlaceId")
                         .HasColumnType("int");
 
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("CategoryId", "MeetingPlaceId");
 
                     b.HasIndex("MeetingPlaceId");
@@ -99,6 +102,9 @@ namespace DringSpot.DataAccess.EF.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
                     b.Property<double>("Latitude")
                         .HasColumnType("float");
 
@@ -106,6 +112,12 @@ namespace DringSpot.DataAccess.EF.Migrations
                         .HasColumnType("float");
 
                     b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Text")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -132,7 +144,7 @@ namespace DringSpot.DataAccess.EF.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("AttendeeNumber")
+                    b.Property<int?>("AttendeeNumber")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("Date")
@@ -144,8 +156,8 @@ namespace DringSpot.DataAccess.EF.Migrations
                     b.Property<int>("Points")
                         .HasColumnType("int");
 
-                    b.Property<int>("ReviewerId")
-                        .HasColumnType("int");
+                    b.Property<string>("ReviewerId")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Text")
                         .HasColumnType("nvarchar(max)");
@@ -202,6 +214,9 @@ namespace DringSpot.DataAccess.EF.Migrations
 
                     b.Property<int?>("ReviewId")
                         .HasColumnType("int");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 

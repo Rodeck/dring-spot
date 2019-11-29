@@ -6,5 +6,6 @@ namespace DringSpot.DataAccess.Models
         public int MeetingPlaceId { get; set; }
         public Category Category { get; set; }
         public MeetingPlace MeetingPlace { get; set; }
+        public string UserId { get; set; }
     }
 }

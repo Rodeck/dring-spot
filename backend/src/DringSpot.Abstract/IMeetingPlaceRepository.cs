@@ -7,16 +7,18 @@ namespace DringSpot.DataAccess.EF
 {
     public interface IMeetingPlaceRepository
     {
-        Task AddCategoryToPlace(int placeId, string catergoryName);
+        Task AddCategoryToPlace(string userId, int placeId, string catergoryName);
 
-        Task AddReview(int placeId, string text, int reviewerId, DateTime date, int attendeeNumber);
+        Task AddReview(string userId, int placeId, string text, DateTime date, int? attendeeNumber);
 
-        Task AddPlace(double lat, double lon, string name, params string[] categories);
+        Task AddPlace(string userId, double lat, double lon, string name, string text, params string[] categories);
 
         Task<List<MeetingPlaceViewModel>> GetPlaces();
 
-        Task<List<MeetingPlaceViewModel>> GetPlacesWithin(double lat, double lon, double distance);
+        Task<List<MeetingPlaceViewModel>> GetPlacesWithin(string userId, double lat, double lon, double distance);
 
         IAsyncEnumerable<CategoryResponseModel> GetCategories();
+
+        Task VoteForReview(int reviewId, string votee, DateTime date, bool isPositive);
     }
 }

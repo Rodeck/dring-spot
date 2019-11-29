@@ -7,12 +7,14 @@ using DringSpot.WebApi.DTO;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 
 namespace DringSpot.WebApi.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("[controller]")]
-    public class MeetingPlaceController: ControllerBase
+    public class MeetingPlaceController: DringControllerBase
     {
         private readonly ILogger<MeetingPlaceController> _logger;
         private readonly IMeetingPlaceRepository _service;
@@ -26,12 +28,15 @@ namespace DringSpot.WebApi.Controllers
         [HttpPost]
         public async Task AddPlace([FromBody] MeetingPlaceDTO placeDTO)
         {
-            await _service.AddPlace(placeDTO.Lat, placeDTO.Lon, placeDTO.Name, placeDTO.Categories);
+            _logger.LogInformation($"{nameof(AddPlace)} UID: {GetUserId()}, JSON: {JsonConvert.SerializeObject(placeDTO)}");
+            await _service.AddPlace(GetUserId(), placeDTO.Lat, placeDTO.Lon, placeDTO.Name, placeDTO.Text, placeDTO.Categories);
         }
 
         [HttpGet]
         public Task<List<MeetingPlaceViewModel>> Load()
         {
+            _logger.LogInformation($"{nameof(Load)} UID: {GetUserId()}");
+            var uid = GetUserId();
             return _service.GetPlaces();
         }
 
@@ -39,20 +44,23 @@ namespace DringSpot.WebApi.Controllers
         [Route("PlacesWithin/{lat:double}/{lon:double}/{range:double}")]
         public Task<List<MeetingPlaceViewModel>> GetPlaceWithin(double lat, double lon, double range)
         {
-            return _service.GetPlacesWithin(lat, lon, range);
+            _logger.LogInformation($"{nameof(GetPlaceWithin)} UID: {GetUserId()}, Lat: {lat}, Lng: {lon}, Range: {range}");
+            return _service.GetPlacesWithin(GetUserId() ,lat, lon, range);
         }
 
         [HttpPost]
         [Route("AddCategory/{placeId}")]
-        public Task GetPlaceWithin(int placeId, [FromBody] CategoryDTO category)
+        public Task AddCategory(int placeId, [FromBody] CategoryDTO category)
         {
-            return _service.AddCategoryToPlace(placeId, category.Name);
+            _logger.LogInformation($"{nameof(AddCategory)} UID: {GetUserId()}, JSON: {JsonConvert.SerializeObject(category)}");
+            return _service.AddCategoryToPlace(GetUserId(), placeId, category.Name);
         }
 
         [HttpGet]
         [Route("GetCategories")]
         public IAsyncEnumerable<CategoryResponseModel> GetCategories()
         {
+            _logger.LogInformation($"{nameof(GetCategories)} UID: {GetUserId()}");
             return _service.GetCategories();
         }
     }

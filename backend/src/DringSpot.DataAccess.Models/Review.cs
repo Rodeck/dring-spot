@@ -11,11 +11,11 @@ namespace DringSpot.DataAccess.Models
 
         public string Text { get; set; }
 
-        public int ReviewerId { get; set; }
+        public string ReviewerId { get; set; }
 
         public DateTime Date { get; set; }
 
-        public int AttendeeNumber { get; set; }
+        public int? AttendeeNumber { get; set; }
 
         public int Points { get; set; }
 

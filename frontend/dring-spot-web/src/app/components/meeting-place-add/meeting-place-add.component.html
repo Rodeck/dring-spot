@@ -1,0 +1,37 @@
+<div class="row">
+    <div class="col-md-7 ml-sm-auto col-lg-6 px-4">
+        <agm-map [latitude]="lat" [longitude]="lng" (mapClick)="moveMarker($event.coords.lat, $event.coords.lng)">
+            <agm-marker [latitude]="lat" [longitude]="lng" [markerDraggable]="true">
+            </agm-marker>
+        </agm-map>
+    </div>
+
+    <div class="col-md-5 ml-sm-auto col-lg-6 px-4">
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon3">Name</span>
+            </div>
+            <input type="text" placeholder="Enter name" class="form-control" id="basic-url" aria-describedby="basic-addon3" [(ngModel)]="name">
+        </div>
+        <div>
+            <span *ngFor='let category of selectedCategories' class="badge badge-primary" (click)="unselectCategory($event)">
+                {{category}}
+            </span>
+        </div>
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Description</span>
+            </div>
+            <textarea class="form-control" aria-label="With textarea" [(ngModel)]="text" placeholder="Enter description"></textarea>
+        </div>
+        <div>
+            Pick categories:
+            <span *ngFor='let category of allCategories | async' class="badge badge-primary" (click)="selectCategory($event)">
+                {{category.name}}
+            </span>
+        </div>
+        <div>
+            <button type="button" class="btn btn-success" (click)="addPlace()">Save</button>
+        </div>
+    </div>
+</div>

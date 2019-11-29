@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace DringSpot.DataAccess.Models
@@ -11,6 +12,12 @@ namespace DringSpot.DataAccess.Models
         public double Longitude { get; set; }
 
         public string Name { get; set; }
+
+        public string Text { get; set; }
+
+        public string UserId { get; set; }
+
+        public DateTime CreatedOn { get; set; }
 
         public virtual ICollection<CategoryPlace> Categories { get; set; }
         

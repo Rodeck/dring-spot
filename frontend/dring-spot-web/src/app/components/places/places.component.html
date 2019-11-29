@@ -1,0 +1,35 @@
+<div class="row">
+    <div class="col-md-7 ml-sm-auto col-lg-6 px-4">
+        <agm-map [latitude]="lat" [longitude]="lng" (mapClick)="moveMarker($event.coords.lat, $event.coords.lng)">
+            <agm-marker *ngFor='let place of places | async' [latitude]="place.latitude" [longitude]="place.longitude" [markerDraggable]="false">
+            </agm-marker>
+        </agm-map>
+    </div>
+
+    <app-place-details *ngIf="showDetails" [meetinPlace]="currentMeetingPlace">
+    </app-place-details>
+
+    <div class="col-md-5 ml-sm-auto col-lg-6 px-4">
+        <div class="row container single-place shadow-sm p-3 mb-5 rounded" *ngFor="let place of places | async">
+            <div class="place-title col-md-12 ml-sm-auto col-lg-12 px-4">
+                <h3>{{place.name}}</h3>
+                <hr/>
+            </div>
+            <div class="row place-desc col-md-12 ml-sm-auto col-lg-12 px-4">
+                <h5>{{place.text}}</h5>
+                <hr/>
+            </div>
+            <div class="row place-badges col-md-12 ml-sm-auto col-lg-12 px-4">
+                <span *ngFor="let category of place.categories" class="badge badge-primary">
+                    {{category.name}}
+                </span>
+            </div>
+            <div class="row justify-content-end place-badges col-md-12 ml-sm-auto col-lg-12 px-4">
+                <div class="col-2">
+                    <button [attr.id]="'r_' + place.id" type="button" class="btn btn-light" (click)="showPlaceDetails($event)">{{place.reviewsCount}} Reviews</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    

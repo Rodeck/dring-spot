@@ -20,7 +20,7 @@ namespace DringSpot.DataAccess.EF
             _logger = logger;
         }
         
-        public async Task AddCategoryToPlace(int placeId, string catergoryName)
+        public async Task AddCategoryToPlace(string userId, int placeId, string catergoryName)
         {
             var place = await _context.Places.
                 Include(x => x.Categories) 
@@ -35,19 +35,19 @@ namespace DringSpot.DataAccess.EF
             if (category == null)
                 throw new Exception($"Category with name: { catergoryName } not found!");
 
-            place.Categories.Add(new CategoryPlace() { Category = category });
+            place.Categories.Add(new CategoryPlace() { Category = category, UserId = userId });
 
             await _context.SaveChangesAsync();
         }
 
-        public async Task AddPlace(double lat, double lon, string name, params string[] categories)
+        public async Task AddPlace(string userId, double lat, double lon, string name, string text, params string[] categories)
         {
             var categoriesList = new List<CategoryPlace>();
 
             foreach(var cat in categories)
             {
                 var category = await _context.Categories.SingleAsync(x => x.Name == cat);
-                categoriesList.Add(new CategoryPlace() { Category = category } );
+                categoriesList.Add(new CategoryPlace() { Category = category, UserId = userId, } );
             }
 
             await _context.Places.AddAsync(new MeetingPlace() 
@@ -56,14 +56,17 @@ namespace DringSpot.DataAccess.EF
                 Longitude = lon,
                 Name = name,
                 Categories = categoriesList,
+                Text = text,
+                UserId = userId,
+                CreatedOn = DateTime.Now,
             });
 
             await _context.SaveChangesAsync();
         }
 
-        public async Task AddReview(int placeId, string text, int reviewerId, DateTime date, int attendeeNumber)
+        public async Task AddReview(string userId, int placeId, string text, DateTime date, int? attendeeNumber)
         {
-            var existingReview = await _context.Reviews.SingleOrDefaultAsync(x => x.MeetingPlaceId == placeId && x.ReviewerId == reviewerId);
+            var existingReview = await _context.Reviews.SingleOrDefaultAsync(x => x.MeetingPlaceId == placeId && x.ReviewerId == userId);
 
             if (existingReview != null)
                 throw new Exception("Review already exisits!");
@@ -74,11 +77,11 @@ namespace DringSpot.DataAccess.EF
                 Date = date,
                 MeetingPlaceId = placeId,
                 Points = 1,
-                ReviewerId = reviewerId,
+                ReviewerId = userId,
                 Text = text,
                 Votees = new List<Votee>() 
                 {
-                    new Votee() { Date = date, IsPositive = true }
+                    new Votee() { Date = date, IsPositive = true, UserId = userId }
                 }
             };
 
@@ -98,19 +101,33 @@ namespace DringSpot.DataAccess.EF
                 .Include(x => x.Reviews)
                     .ThenInclude(y => y.Votees)
                 .ToListAsync();
+
             return places
-                .Select(x => new MeetingPlaceViewModel()
-                {
-                    Categories = x.Categories.ToList().Select(c => new CategoryDTO() { Name = c.Category.Name }).ToList(),
-                    Id = x.Id,
-                    Latitude = x.Latitude,
-                    Longitude = x.Longitude,
-                    Name = x.Name
+                .Select(x => {
+                    var reviews = x.Reviews.ToList();
+                    return new MeetingPlaceViewModel()
+                    {
+                        Categories = x.Categories.ToList().Select(c => new CategoryDTO() { Name = c.Category.Name }).ToList(),
+                        Id = x.Id,
+                        Latitude = x.Latitude,
+                        Longitude = x.Longitude,
+                        Name = x.Name,
+                        Text = x.Text,
+                        Reviews = reviews.Select(x => new ReviewViewModel()
+                        {
+                            Date = x.Date,
+                            Id = x.Id,
+                            Points = x.Points,
+                            Reviewer = x.ReviewerId,
+                            Text = x.Text
+                        }),
+                        ReviewsCount = reviews.Count
+                    };
                 })
                 .ToList();
         }
 
-        public async Task<List<MeetingPlaceViewModel>> GetPlacesWithin(double lat, double lon, double dist)
+        public async Task<List<MeetingPlaceViewModel>> GetPlacesWithin(string userId, double lat, double lon, double dist)
         {
             var placesIds = await _context.GetPlacesWithin(lat, lon, dist).Select(x => x.Id).ToListAsync();
 
@@ -127,9 +144,38 @@ namespace DringSpot.DataAccess.EF
                 }).ToList();
         }
 
-        public Task VoteForReview(int reviewId, int votee, DateTime date)
+        public async Task VoteForReview(int reviewId, string votee, DateTime date, bool isPositive)
         {
-            throw new System.NotImplementedException();
+            var review = await _context.Reviews
+                    .Include(x => x.Votees)
+                    .SingleAsync(x => x.Id == reviewId);
+
+            if (review == null)
+                throw new Exception("");
+
+            var existingVote = review.Votees.SingleOrDefault(x => x.UserId == votee);
+            
+            if (existingVote == null)
+            {
+                if (existingVote.IsPositive == isPositive)
+                    throw new Exception($"You cannot vote twice.");
+                else
+                {
+                    if (isPositive)
+                        review.Points += 2;
+                    else
+                        review.Points -= 2;
+
+                    existingVote.IsPositive = isPositive;
+                }
+            }
+            else
+            {
+                review.Votees.Add(new Votee() { UserId = votee, IsPositive = isPositive });
+                review.Points = isPositive ? review.Points + 1 : review.Points - 1;
+            }
+
+            await _context.SaveChangesAsync();
         }
     }
 }

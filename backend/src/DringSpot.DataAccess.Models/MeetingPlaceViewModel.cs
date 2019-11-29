@@ -12,6 +12,12 @@ namespace DringSpot.DataAccess.Models
 
         public double Longitude { get; set; }
 
+        public string Text { get; set; }
+
         public ICollection<CategoryDTO> Categories { get; set; }
+
+        public IEnumerable<ReviewViewModel> Reviews { get; set; }
+
+        public int ReviewsCount { get; set; }
     }
 }
