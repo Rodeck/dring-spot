@@ -39,3 +39,6 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+frontend/dring-spot-web/src/environments/environment.prod.ts
+frontend/dring-spot-web/src/environments/environment.prod.ts
+frontend/dring-spot-web/src/environments/environment.ts
