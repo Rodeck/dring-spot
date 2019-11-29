@@ -29,6 +29,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { PlacesComponent } from './components/places/places.component';
 import { TokenInterceptor } from './services/token.interceptor';
 import { PlaceDetailsComponent } from './components/place-details/place-details.component';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -54,7 +55,8 @@ import { PlaceDetailsComponent } from './components/place-details/place-details.
       apiKey: environment.mapKey
     }),
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    NgbModule
   ],
   providers: [AuthService, {
       provide: 'BASE_URL', 
@@ -64,7 +66,8 @@ import { PlaceDetailsComponent } from './components/place-details/place-details.
     useClass: TokenInterceptor,
     multi: true
   }],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [ PlaceDetailsComponent ]
 })
 
 export class AppModule { }

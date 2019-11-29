@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { MeetingPlace } from 'src/app/models/meeting-place.model';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-place-details',
@@ -8,11 +10,17 @@ import { MeetingPlace } from 'src/app/models/meeting-place.model';
 })
 export class PlaceDetailsComponent implements OnInit {
 
-  @Input() meetinPlace: MeetingPlace;
+  @Input() meetingPlace: MeetingPlace;
 
-  constructor() { }
+  constructor(public activeModal: NgbActiveModal) {}
 
   ngOnInit() {
+  }
+
+  calcDate(date: Date) {
+    const today =  moment();
+    const diff = moment(date).diff(today, 'days');
+    return diff == 0 ? 'today' : `${diff} days ago`;
   }
 
 }

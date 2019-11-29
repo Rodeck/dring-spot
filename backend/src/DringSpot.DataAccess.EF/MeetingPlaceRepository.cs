@@ -86,6 +86,8 @@ namespace DringSpot.DataAccess.EF
             };
 
             await _context.Reviews.AddAsync(review);
+
+            await _context.SaveChangesAsync().ConfigureAwait(false);
         }
 
         public IAsyncEnumerable<CategoryResponseModel> GetCategories()

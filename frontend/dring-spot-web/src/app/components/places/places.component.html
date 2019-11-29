@@ -6,9 +6,6 @@
         </agm-map>
     </div>
 
-    <app-place-details *ngIf="showDetails" [meetinPlace]="currentMeetingPlace">
-    </app-place-details>
-
     <div class="col-md-5 ml-sm-auto col-lg-6 px-4">
         <div class="row container single-place shadow-sm p-3 mb-5 rounded" *ngFor="let place of places | async">
             <div class="place-title col-md-12 ml-sm-auto col-lg-12 px-4">

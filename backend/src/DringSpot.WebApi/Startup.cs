@@ -15,6 +15,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
+using Newtonsoft.Json;
 
 namespace DringSpot.WebApi
 {
@@ -30,6 +31,8 @@ namespace DringSpot.WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            DateTime time = new DateTime();
+            var json =  JsonConvert.SerializeObject(time);
             services.AddControllers();
             services.AddDbContext<DringContext>(opt =>
                 opt.UseSqlServer(Configuration.GetConnectionString("DringSpot") ??
