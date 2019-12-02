@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using DringSpot.DataAccess.Models;
 
@@ -5,10 +7,20 @@ namespace DringSpot.DataAccess.EF
 {
     public interface IMeetingPlaceRepository
     {
-        Task AddPlace(string lat, string lon, params string[] categories);
-        
-        Task<MeetingPlaceViewModel> GetPlaces();
+        Task AddCategoryToPlace(string userId, int placeId, string catergoryName);
 
-        Task<MeetingPlaceViewModel> GetPlacesWithin(float range);
+        Task AddReview(string userId, int placeId, string text, DateTime date, int? attendeeNumber);
+
+        Task AddPlace(string userId, double lat, double lon, string name, string text, params string[] categories);
+
+        Task<List<MeetingPlaceViewModel>> GetPlaces();
+
+        Task<MeetingPlaceViewModel> GetPlace(int id);
+
+        Task<List<MeetingPlaceViewModel>> GetPlacesWithin(string userId, double lat, double lon, double distance);
+
+        IAsyncEnumerable<CategoryResponseModel> GetCategories();
+
+        Task VoteForReview(int reviewId, string votee, DateTime date, bool isPositive);
     }
 }

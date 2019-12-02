@@ -1,0 +1,44 @@
+agm-map {
+    width: 500px;
+    height: 500px;
+}
+
+.text-link {
+    color: #3F51B5 !important;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.to-right {
+    text-align: right;
+    font-size: 0.9em;
+    color: gray;
+}
+
+.comment-container {
+    padding: 5px;
+    margin-top: 5px;
+}
+
+.badge {
+    margin-right: 3px;
+    padding: 6px;
+}
+
+.description:focus{
+    height: 300px;
+}
+
+.add-button {
+    margin-top: 3px;
+}
+
+.vote-button {
+    cursor: pointer;
+}
+
+.center-block {
+    margin-left:auto;
+    margin-right:auto;
+    display:block;
+ }

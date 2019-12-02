@@ -1,0 +1,71 @@
+<!-- Top navigation -->
+<nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
+  <a class="navbar-brand col-sm-3 col-md-2 mr-0" routerLink="/dashboard">
+    <img class="brand-logo" src="assets/dring_logo.png">
+  </a>
+</nav>
+
+<!-- Sidebar navigation -->
+<div class="container-fluid">
+  <div class="row">
+
+    <nav class="col-md-2 d-md-block bg-light sidebar">
+      <div class="sidebar-sticky">
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a class="nav-link" (click)="actiavateComponent('profile')">
+              <i class="fas fa-user"></i>User Profile
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" (click)="actiavateComponent('addPlace')">
+              <i class="fas fa-plus"></i>Add place
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" (click)="actiavateComponent('places')">
+              <i class="fas fa-search-location"></i>Places
+            </a>
+          </li>
+          <!-- Calling SignOut() Api from AuthService -->
+          <li class="nav-item">
+            <a class="nav-link" (click)="authService.SignOut()">
+              <i class="fas fa-sign-out-alt"></i>Log out
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Main content -->
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+      <div class="inner-adjust">
+        <div *ngIf="activeComponent == 'profile'">
+          <app-user-profile></app-user-profile>
+        </div>
+        <div *ngIf="activeComponent == 'addPlace'">
+          <div class="pt-3 pb-2 mb-3 border-bottom">
+            <h1>Add place</h1>
+          </div>
+          <!-- Show user data when logged in -->
+          <div class="row">
+            <div class="col-md-12">
+                <app-meeting-place-add></app-meeting-place-add>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="activeComponent == 'places'">
+            <div class="pt-3 pb-2 mb-3 border-bottom">
+              <h1>Search for places</h1>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                  <app-places></app-places>
+              </div>
+            </div>
+          </div>
+      </div>
+    </main>
+
+  </div>
+</div>

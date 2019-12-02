@@ -29,17 +29,30 @@ namespace DringSpot.DataAccess.EF.Migrations
                     b.Property<string>("Icon")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("MeetingPlaceId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
+                    b.ToTable("Categories");
+                });
+
+            modelBuilder.Entity("DringSpot.DataAccess.Models.CategoryPlace", b =>
+                {
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("MeetingPlaceId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("CategoryId", "MeetingPlaceId");
+
                     b.HasIndex("MeetingPlaceId");
 
-                    b.ToTable("Categories");
+                    b.ToTable("CategoryPlace");
                 });
 
             modelBuilder.Entity("DringSpot.DataAccess.Models.FavouredPlace", b =>
@@ -89,18 +102,39 @@ namespace DringSpot.DataAccess.EF.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Latitude")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
 
-                    b.Property<string>("Longitude")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<double>("Latitude")
+                        .HasColumnType("float");
+
+                    b.Property<double>("Longitude")
+                        .HasColumnType("float");
 
                     b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Text")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
                     b.ToTable("Places");
+                });
+
+            modelBuilder.Entity("DringSpot.DataAccess.Models.PlaceWithinFindModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("PlacesWithin");
                 });
 
             modelBuilder.Entity("DringSpot.DataAccess.Models.Review", b =>
@@ -110,7 +144,7 @@ namespace DringSpot.DataAccess.EF.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("AttendeeNumber")
+                    b.Property<int?>("AttendeeNumber")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("Date")
@@ -122,8 +156,8 @@ namespace DringSpot.DataAccess.EF.Migrations
                     b.Property<int>("Points")
                         .HasColumnType("int");
 
-                    b.Property<int>("ReviewerId")
-                        .HasColumnType("int");
+                    b.Property<string>("ReviewerId")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Text")
                         .HasColumnType("nvarchar(max)");
@@ -181,6 +215,9 @@ namespace DringSpot.DataAccess.EF.Migrations
                     b.Property<int?>("ReviewId")
                         .HasColumnType("int");
 
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.HasIndex("MeetingPlaceId");
@@ -190,11 +227,19 @@ namespace DringSpot.DataAccess.EF.Migrations
                     b.ToTable("Votee");
                 });
 
-            modelBuilder.Entity("DringSpot.DataAccess.Models.Category", b =>
+            modelBuilder.Entity("DringSpot.DataAccess.Models.CategoryPlace", b =>
                 {
-                    b.HasOne("DringSpot.DataAccess.Models.MeetingPlace", null)
+                    b.HasOne("DringSpot.DataAccess.Models.Category", "Category")
+                        .WithMany("Places")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("DringSpot.DataAccess.Models.MeetingPlace", "MeetingPlace")
                         .WithMany("Categories")
-                        .HasForeignKey("MeetingPlaceId");
+                        .HasForeignKey("MeetingPlaceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("DringSpot.DataAccess.Models.FavouredPlace", b =>

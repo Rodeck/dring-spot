@@ -1,0 +1,116 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DringSpot.WebApi</name>
+    </assembly>
+    <members>
+        <member name="T:DringSpot.WebApi.Controllers.MeetingPlaceController">
+            <summary>
+            Controller for handling operations for <see cref="T:DringSpot.DataAccess.Models.MeetingPlace"/>.
+            </summary>
+        </member>
+        <member name="M:DringSpot.WebApi.Controllers.MeetingPlaceController.#ctor(Microsoft.Extensions.Logging.ILogger{DringSpot.WebApi.Controllers.MeetingPlaceController},DringSpot.DataAccess.EF.IMeetingPlaceRepository)">
+            <summary>
+            Initializes instance of <see cref="T:DringSpot.WebApi.Controllers.MeetingPlaceController"/>.
+            </summary>
+            <param name="logger">Logger used for logging operations <see cref="T:Microsoft.Extensions.Logging.ILogger`1"/>.</param>
+            <param name="repository">Repository for geting, creating and updating <see cref="T:DringSpot.DataAccess.Models.MeetingPlace"/>.</param>
+        </member>
+        <member name="M:DringSpot.WebApi.Controllers.MeetingPlaceController.AddPlace(DringSpot.WebApi.DTO.MeetingPlaceDTO)">
+            <summary>
+            Adds new metting place.
+            </summary>
+            <param name="placeDTO">Data needed for creating new meeting place <see cref="T:DringSpot.WebApi.DTO.MeetingPlaceDTO"/>.</param>
+            <returns>Task</returns>
+        </member>
+        <member name="M:DringSpot.WebApi.Controllers.MeetingPlaceController.Load">
+            <summary>
+            Loads all metting places.
+            </summary>
+            <returns>Task containing collection of <see cref="T:DringSpot.DataAccess.Models.MeetingPlaceViewModel"/>.</returns>
+        </member>
+        <member name="M:DringSpot.WebApi.Controllers.MeetingPlaceController.GetPlaceWithin(System.Double,System.Double,System.Double)">
+            <summary>
+            Loads all places within given range.
+            </summary>
+            <param name="lat">Lattitude of cetral point.</param>
+            <param name="lon">Longitude of centra point.</param>
+            <param name="range">Range in meters to seek within.</param>
+            <returns>Task containing collection of <see cref="T:DringSpot.DataAccess.Models.MeetingPlaceViewModel"/>.</returns>
+        </member>
+        <member name="M:DringSpot.WebApi.Controllers.MeetingPlaceController.AddCategory(System.Int32,DringSpot.DataAccess.Models.CategoryDTO)">
+            <summary>
+            Adds new category for meeting place. Category must exist.
+            </summary>
+            <param name="placeId">Place id.</param>
+            <param name="category">Category DTO <see cref="T:DringSpot.DataAccess.Models.CategoryDTO"/>.</param>
+            <returns>Task</returns>
+        </member>
+        <member name="M:DringSpot.WebApi.Controllers.MeetingPlaceController.GetCategories">
+            <summary>
+            Returns all avaliable categories.
+            </summary>
+            <returns>Task containing collection of <see cref="T:DringSpot.DataAccess.Models.CategoryResponseModel"/>.</returns>
+        </member>
+        <member name="M:DringSpot.WebApi.Controllers.MeetingPlaceController.GetPlace(System.Int32)">
+            <summary>
+            Get place by id.
+            </summary>
+            <returns>Task containing <see cref="T:DringSpot.DataAccess.Models.MeetingPlaceViewModel"/>.</returns>
+        </member>
+        <member name="T:DringSpot.WebApi.Controllers.ReviewController">
+            <summary>
+            Controller for handling actions for <see cref="T:DringSpot.DataAccess.Models.Review"/>.
+            </summary>
+        </member>
+        <member name="M:DringSpot.WebApi.Controllers.ReviewController.#ctor(Microsoft.Extensions.Logging.ILogger{DringSpot.WebApi.Controllers.ReviewController},DringSpot.DataAccess.EF.IMeetingPlaceRepository)">
+            <summary>
+            Initializes new instance of <see cref="T:DringSpot.WebApi.Controllers.ReviewController"/>.
+            </summary>
+            <param name="logger">Logger <see cref="T:Microsoft.Extensions.Logging.ILogger`1"/>.</param>
+            <param name="repository">Repository for handling actions <see cref="T:DringSpot.DataAccess.EF.IMeetingPlaceRepository"/>.</param>
+        </member>
+        <member name="M:DringSpot.WebApi.Controllers.ReviewController.Vote(System.Int32,DringSpot.DataAccess.Models.VoteDTO)">
+            <summary>
+            Vote for review.
+            </summary>
+            <param name="reviewId">Id of review to vote for.</param>
+            <param name="vote">Vote DTO <see cref="T:DringSpot.DataAccess.Models.VoteDTO"/>.</param>
+            <returns>Task.</returns>
+        </member>
+        <member name="M:DringSpot.WebApi.Controllers.ReviewController.AddReview(System.Int32,DringSpot.DataAccess.Models.ReviewDTO)">
+            <summary>
+            Adds new review.
+            </summary>
+            <param name="placeId">Place Id.</param>
+            <param name="review">Review DTO <see cref="T:DringSpot.DataAccess.Models.ReviewDTO"/>.</param>
+            <returns></returns>
+        </member>
+        <member name="T:DringSpot.WebApi.DTO.MeetingPlaceDTO">
+            <summary>
+            Data transportation object containing all needed information to construct <see cref="!:MeetingPlace"/>.
+            </summary>
+        </member>
+        <member name="P:DringSpot.WebApi.DTO.MeetingPlaceDTO.Lat">
+            <summary>
+            Gets or sets Lattitude.
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "P:DringSpot.WebApi.DTO.MeetingPlaceDTO.Lon" -->
+        <member name="P:DringSpot.WebApi.DTO.MeetingPlaceDTO.Name">
+            <summary>
+            Gets or sets name of the place.
+            </summary>
+        </member>
+        <member name="P:DringSpot.WebApi.DTO.MeetingPlaceDTO.Text">
+            <summary>
+            Gets or sets description text for place.
+            </summary>
+        </member>
+        <member name="P:DringSpot.WebApi.DTO.MeetingPlaceDTO.Categories">
+            <summary>
+            Gets or sets array of categories for new place.
+            </summary>
+        </member>
+    </members>
+</doc>
