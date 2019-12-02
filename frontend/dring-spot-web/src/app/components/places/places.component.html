@@ -1,13 +1,55 @@
 <div class="row">
+    <div class="col">
+        <div class="row">
+            <div class="col">
+                <input type="text" class="form-control" placeholder="Localization">
+            </div>
+            <div class="col-2">
+                <div class="input-group mb-2">
+                    <input type="text" class="form-control range-input" placeholder="Range">
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <i class="fas fa-plus vote-button" aria-hidden="true"></i>
+                            <i class="fas fa-minus vote-button" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <input type="text" class="form-control" placeholder="What are you looking for?">
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-6 text-center font-weight-bold">
+            or just pick categories
+        </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <span *ngFor="let category of categories | async" class="badge badge-primary">
+                    {{category.name}}
+                </span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 justify-content-center">
+                <button type="button" class="btn btn-success" (click)="searchPlaces()">Search</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row" *ngIf="searchedPlaces$ | async as places">
     <div class="col-md-7 ml-sm-auto col-lg-6 px-4">
         <agm-map [latitude]="lat" [longitude]="lng" (mapClick)="moveMarker($event.coords.lat, $event.coords.lng)">
-            <agm-marker *ngFor='let place of places | async' [latitude]="place.latitude" [longitude]="place.longitude" [markerDraggable]="false">
+            <agm-marker *ngFor='let place of places' [latitude]="place.latitude" [longitude]="place.longitude" [markerDraggable]="false">
             </agm-marker>
         </agm-map>
     </div>
 
     <div class="col-md-5 ml-sm-auto col-lg-6 px-4">
-        <div class="row container single-place shadow-sm p-3 mb-5 rounded" *ngFor="let place of places | async">
+        <div class="row container single-place shadow-sm p-3 mb-5 rounded" *ngFor="let place of places">
             <div class="place-title col-md-12 ml-sm-auto col-lg-12 px-4">
                 <h3>{{place.name}}</h3>
                 <hr/>

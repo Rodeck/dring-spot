@@ -30,6 +30,12 @@ import { PlacesComponent } from './components/places/places.component';
 import { TokenInterceptor } from './services/token.interceptor';
 import { PlaceDetailsComponent } from './components/place-details/place-details.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { StoreModule } from '@ngrx/store';
+import { reducer, appReducers } from './store/reducers/app.reducers';
+import { EffectsModule } from '@ngrx/effects';
+import { AppEffects } from './store/effects/app.effects';
+import { StoreDevtoolsModule } from "@ngrx/store-devtools";
 
 
 @NgModule({
@@ -42,7 +48,8 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     VerifyEmailComponent,
     MeetingPlaceAddComponent,
     PlacesComponent,
-    PlaceDetailsComponent
+    PlaceDetailsComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -56,7 +63,10 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     }),
     HttpClientModule,
     FormsModule,
-    NgbModule
+    NgbModule,
+    StoreModule.forRoot(appReducers),
+    EffectsModule.forRoot([AppEffects]),
+    environment.production ? [] : StoreDevtoolsModule.instrument()
   ],
   providers: [AuthService, {
       provide: 'BASE_URL', 

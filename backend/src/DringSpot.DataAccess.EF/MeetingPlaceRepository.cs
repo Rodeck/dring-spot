@@ -95,6 +95,18 @@ namespace DringSpot.DataAccess.EF
             return _context.Categories.Select(x => new CategoryResponseModel() { Name = x.Name, Icon = x.Icon }).AsAsyncEnumerable();
         }
 
+        public async Task<MeetingPlaceViewModel> GetPlace(int id)
+        {
+            var place = await _context
+                .Places
+                .Include(x => x.Categories)
+                    .ThenInclude(c => c.Category)
+                .Include(x => x.Reviews)
+                    .ThenInclude(y => y.Votees)
+                .SingleAsync(x => x.Id == id);
+            return Map(place);
+        }
+
         public async Task<List<MeetingPlaceViewModel>> GetPlaces()
         {
             var places = await _context.Places
@@ -105,28 +117,34 @@ namespace DringSpot.DataAccess.EF
                 .ToListAsync();
 
             return places
-                .Select(x => {
-                    var reviews = x.Reviews.ToList();
-                    return new MeetingPlaceViewModel()
-                    {
-                        Categories = x.Categories.ToList().Select(c => new CategoryDTO() { Name = c.Category.Name }).ToList(),
-                        Id = x.Id,
-                        Latitude = x.Latitude,
-                        Longitude = x.Longitude,
-                        Name = x.Name,
-                        Text = x.Text,
-                        Reviews = reviews.Select(x => new ReviewViewModel()
-                        {
-                            Date = x.Date,
-                            Id = x.Id,
-                            Points = x.Points,
-                            Reviewer = x.ReviewerId,
-                            Text = x.Text
-                        }),
-                        ReviewsCount = reviews.Count
-                    };
-                })
+                .Select(x => Map(x))
                 .ToList();
+        }
+
+        private MeetingPlaceViewModel Map(MeetingPlace from) 
+        {
+            if (from == null)
+                return null;
+
+            var reviews = from.Reviews.ToList();
+            return new MeetingPlaceViewModel()
+            {
+                Categories = from.Categories.ToList().Select(c => new CategoryDTO() { Name = c.Category.Name }).ToList(),
+                Id = from.Id,
+                Latitude = from.Latitude,
+                Longitude = from.Longitude,
+                Name = from.Name,
+                Text = from.Text,
+                Reviews = reviews.Select(x => new ReviewViewModel()
+                {
+                    Date = x.Date,
+                    Id = x.Id,
+                    Points = x.Points,
+                    Reviewer = x.ReviewerId,
+                    Text = x.Text
+                }),
+                ReviewsCount = reviews.Count
+            };
         }
 
         public async Task<List<MeetingPlaceViewModel>> GetPlacesWithin(string userId, double lat, double lon, double dist)
@@ -157,7 +175,7 @@ namespace DringSpot.DataAccess.EF
 
             var existingVote = review.Votees.SingleOrDefault(x => x.UserId == votee);
             
-            if (existingVote == null)
+            if (existingVote != null)
             {
                 if (existingVote.IsPositive == isPositive)
                     throw new Exception($"You cannot vote twice.");

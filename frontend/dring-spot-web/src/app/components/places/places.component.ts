@@ -4,6 +4,11 @@ import { Observable } from 'rxjs';
 import { MeetingPlace } from 'src/app/models/meeting-place.model';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { PlaceDetailsComponent } from "../place-details/place-details.component";
+import { AppState, BaseState } from 'src/app/store/state/app.state';
+import { Store } from '@ngrx/store';
+import { selectPlaces, selectPlaceDetails, selectCategories, selectSearchedPlaces } from 'src/app/store/selectors/app.selectors';
+import { showPlaceDetails, hidePlaceDetails, searchForPlaces } from 'src/app/store/actions/app.actions';
+import { Category } from 'src/app/models/category.model';
 
 @Component({
   selector: 'app-places',
@@ -12,22 +17,36 @@ import { PlaceDetailsComponent } from "../place-details/place-details.component"
 })
 export class PlacesComponent implements OnInit {
 
-  places: Observable<MeetingPlace[]> = this.meetingPlaceService.getPlaces();
-  currentPlace: MeetingPlace;
+  searchedPlaces: Observable<MeetingPlace[]> = this.store.select(selectSearchedPlaces);
+  categories: Observable<Category[]> = this.store.select(selectCategories);
   showDetails: boolean;
 
   showPlaceDetails(event) {
-    this.places.subscribe(x => {
-      const modalRef = this.modalService.open(PlaceDetailsComponent, {size: 'xl'});
-      const id = event.target.attributes.id.nodeValue.substring(2);
-      console.log("Show place with id: ", id);
-      modalRef.componentInstance.meetingPlace = x.find(x => x.id == id);
-    });
+    const id = event.target.attributes.id.nodeValue.substring(2);
+    this.store.dispatch(showPlaceDetails({id: parseInt(id)}));
   }
 
-  constructor(private meetingPlaceService: MeetingPlaceService, private modalService: NgbModal) { }
+  searchPlaces() {
+    this.store.dispatch(searchForPlaces());
+  }
+
+
+  constructor(
+    private modalService: NgbModal,
+    private store: Store<BaseState>
+  ) { }
 
   ngOnInit() {
+    this.store.select(selectPlaceDetails).subscribe(x => {
+      if (x != null)
+      {
+        this.modalService.open(PlaceDetailsComponent, {size: 'xl', beforeDismiss: () => {
+          this.store.dispatch(hidePlaceDetails());
+          return true;
+        }}); 
+        console.log("Show place with id: ", x.id);
+      }
+    });
   }
 
 }

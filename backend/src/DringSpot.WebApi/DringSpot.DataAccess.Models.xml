@@ -1,0 +1,128 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DringSpot.DataAccess.Models</name>
+    </assembly>
+    <members>
+        <member name="T:DringSpot.DataAccess.Models.CategoryDTO">
+            <summary>
+            Data transportation object for <see cref="T:DringSpot.DataAccess.Models.Category"/>.
+            </summary>
+        </member>
+        <member name="P:DringSpot.DataAccess.Models.CategoryDTO.Name">
+            <summary>
+            Gets or sets name of the category.
+            </summary>
+        </member>
+        <member name="T:DringSpot.DataAccess.Models.MeetingPlaceViewModel">
+            <summary>
+            View model for <see cref="T:DringSpot.DataAccess.Models.MeetingPlace"/>.
+            </summary>
+        </member>
+        <member name="P:DringSpot.DataAccess.Models.MeetingPlaceViewModel.Id">
+            <summary>
+            Gets or sets id of place.
+            </summary>
+        </member>
+        <member name="P:DringSpot.DataAccess.Models.MeetingPlaceViewModel.Name">
+            <summary>
+            Gets or sets name of place.
+            </summary>
+        </member>
+        <member name="P:DringSpot.DataAccess.Models.MeetingPlaceViewModel.Latitude">
+            <summary>
+            Gets or sets Lattitude of place.
+            </summary>
+        </member>
+        <member name="P:DringSpot.DataAccess.Models.MeetingPlaceViewModel.Longitude">
+            <summary>
+            Gets or sets longitude of place.
+            </summary>
+        </member>
+        <member name="P:DringSpot.DataAccess.Models.MeetingPlaceViewModel.Text">
+            <summary>
+            Gets or sets text description of place.
+            </summary>
+        </member>
+        <member name="P:DringSpot.DataAccess.Models.MeetingPlaceViewModel.Categories">
+            <summary>
+            Gets or sets categories of place <see cref="T:DringSpot.DataAccess.Models.CategoryDTO"/>.
+            </summary>
+        </member>
+        <member name="P:DringSpot.DataAccess.Models.MeetingPlaceViewModel.Reviews">
+            <summary>
+            Gets or sets reviews of place <see cref="T:DringSpot.DataAccess.Models.ReviewViewModel"/>.
+            </summary>
+        </member>
+        <member name="P:DringSpot.DataAccess.Models.MeetingPlaceViewModel.ReviewsCount">
+            <summary>
+            Gets or sets count of reviews.
+            </summary>
+        </member>
+        <member name="T:DringSpot.DataAccess.Models.ReviewDTO">
+            <summary>
+            Data transportation object for review.
+            </summary>
+        </member>
+        <member name="P:DringSpot.DataAccess.Models.ReviewDTO.Text">
+            <summary>
+            Gets or sets text of review.
+            </summary>
+        </member>
+        <member name="P:DringSpot.DataAccess.Models.ReviewDTO.Date">
+            <summary>
+            Gets or sets date of review.
+            </summary>
+        </member>
+        <member name="P:DringSpot.DataAccess.Models.ReviewDTO.AttendeeNumber">
+            <summary>
+            Gets or sets attendee number of event (optional).
+            </summary>
+        </member>
+        <member name="T:DringSpot.DataAccess.Models.ReviewViewModel">
+            <summary>
+            View model for review of place.
+            </summary>
+        </member>
+        <member name="P:DringSpot.DataAccess.Models.ReviewViewModel.Id">
+            <summary>
+            Gets or sets Id of review.
+            </summary>
+        </member>
+        <member name="P:DringSpot.DataAccess.Models.ReviewViewModel.Date">
+            <summary>
+            Gets or sets review date.
+            </summary>
+        </member>
+        <member name="P:DringSpot.DataAccess.Models.ReviewViewModel.Reviewer">
+            <summary>
+            Gets or sets user id of reviewer.
+            </summary>
+        </member>
+        <member name="P:DringSpot.DataAccess.Models.ReviewViewModel.Points">
+            <summary>
+            Gets or sets points of this review.
+            </summary>
+        </member>
+        <member name="P:DringSpot.DataAccess.Models.ReviewViewModel.Text">
+            <summary>
+            Gets or sets text of this review.
+            </summary>
+        </member>
+        <member name="T:DringSpot.DataAccess.Models.VoteDTO">
+            <summary>
+            Data transportation object for vote.
+            </summary>
+        </member>
+        <member name="P:DringSpot.DataAccess.Models.VoteDTO.Date">
+            <summary>
+            Gets or sets date of vote.
+            </summary>
+        </member>
+        <member name="P:DringSpot.DataAccess.Models.VoteDTO.IsPositive">
+            <summary>
+            Gets or sets if vote is positive.
+            </summary>
+        </member>
+    </members>
+</doc>

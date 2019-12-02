@@ -16,23 +16,34 @@ export class MeetingPlaceService {
     @Inject('BASE_URL') private url: string
   ) {
 
-   }
+  }
 
-   getCategories(): Observable<Category[]> {
-     return this.client.get<Category[]>(this.baseUrl + "/GetCategories");
-   }
+  getCategories(): Observable<Category[]> {
+    return this.client.get<Category[]>(this.baseUrl + "/GetCategories");
+  }
 
-   addPlace(name: string, lat: number, lng: number, text: string, categories: string[]): Observable<any> {
+  addPlace(name: string, lat: number, lng: number, text: string, categories: string[]): Observable<any> {
     return this.client.post(this.baseUrl + "/", {
       name: name,
       lat: lat,
       lon: lng,
       text: text,
       categories: categories,
-    })
+      })
   };
+
+  addReview(text: string, placeId: number) {
+    return this.client.post(this.baseUrl + "/Review/" + placeId, { 
+      text: text,
+      date: new Date(),
+    })
+  }
 
   getPlaces(): Observable<MeetingPlace[]> {
     return this.client.get<MeetingPlace[]>(this.baseUrl + "/");
+  }
+
+  getPlace(id: number): Observable<MeetingPlace> {
+    return this.client.get<MeetingPlace>(this.baseUrl + "/" + id);
   }
 }

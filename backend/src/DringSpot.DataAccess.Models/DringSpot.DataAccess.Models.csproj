@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.0</TargetFramework>
+    <DocumentationFile>..\DringSpot.WebApi\$(AssemblyName).xml</DocumentationFile>
   </PropertyGroup>
 
 </Project>

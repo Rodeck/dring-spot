@@ -15,6 +15,8 @@ namespace DringSpot.DataAccess.EF
 
         Task<List<MeetingPlaceViewModel>> GetPlaces();
 
+        Task<MeetingPlaceViewModel> GetPlace(int id);
+
         Task<List<MeetingPlaceViewModel>> GetPlacesWithin(string userId, double lat, double lon, double distance);
 
         IAsyncEnumerable<CategoryResponseModel> GetCategories();
