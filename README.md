@@ -26,24 +26,25 @@
  [Doc](https://docs.google.com/document/d/1FcQTzrqknLfCmG1Na9QcXNGaWxyvVXQ0WuGzo3cTTK4/edit#heading=h.n63kq6ti6ndx) - project documentation
  [Resources](https://drive.google.com/drive/folders/1IKBgiNeSPRKz5NNEoPB7NbW4dAHJfwZV?usp=sharing) - google drive folder containing all work not related to coding.
  
- ## How to run project.
- 
- ### Backend:
- To run backend app:
-	1. take database backup (if you haven't done it yet) and restore it using sql serverver management studio (right click on databases and pick restore database, name it DringDB)
-	2. Go to appsettings.developement.json in project root and change Data Source= to you'r sql server name
-	3. Run backend:
+## How to run project.
+
+### Backend:
+
+To run backend app:
+- take database backup (if you haven't done it yet) and restore it using sql serverver management studio (right click on databases and pick restore database, name it DringDB)
+- Go to appsettings.developement.json in project root and change Data Source= to you'r sql server name
+- Run backend:
 
         cd [project_localization]/backend/src/DringSpot.WebApi
         dotnet run
  
- ### Frontend: (this is about test angular web api)
+### Frontend: (this is about test angular web api)
  
-	1. Add environment.ts file (you can find one in [Resources](https://drive.google.com/drive/folders/1IKBgiNeSPRKz5NNEoPB7NbW4dAHJfwZV?usp=sharing)
-	2. Run app:
+- Add environment.ts file (you can find one in [Resources](https://drive.google.com/drive/folders/1IKBgiNeSPRKz5NNEoPB7NbW4dAHJfwZV?usp=sharing)
+- Run app:
 
         > cd [project_localization]/frontend/dring-spot-web/
         > npm install
         > ng serve
  
- App starts on port localhost:4200 by default.
+App starts on port localhost:4200 by default.
