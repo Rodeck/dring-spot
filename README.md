@@ -29,28 +29,21 @@
  ## How to run project.
  
  ### Backend:
- For now what you need:
- visual studio code or visual studio 2019
- For visual studio code:
-    
+ To run backend app:
+	1. take database backup (if you haven't done it yet) and restore it using sql serverver management studio (right click on databases and pick restore database, name it DringDB)
+	2. Go to appsettings.developement.json in project root and change Data Source= to you'r sql server name
+	3. Run backend:
 
         cd [project_localization]/backend/src/DringSpot.WebApi
-        code .
-     
- 
- Then in terminal just type
-
         dotnet run
  
  ### Frontend: (this is about test angular web api)
- Only visual studio code is needed:
  
-        cd [project_localization]/frontend/dring-spot-test/dring-spot-test
-        code .
- 
- Then in terminal just type
- 
-        npm install
-        ng serve
+	1. Add environment.ts file (you can find one in [Resources](https://drive.google.com/drive/folders/1IKBgiNeSPRKz5NNEoPB7NbW4dAHJfwZV?usp=sharing)
+	2. Run app:
+
+        > cd [project_localization]/frontend/dring-spot-web/
+        > npm install
+        > ng serve
  
  App starts on port localhost:4200 by default.
