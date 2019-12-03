@@ -22,5 +22,7 @@ namespace DringSpot.DataAccess.EF
         IAsyncEnumerable<CategoryResponseModel> GetCategories();
 
         Task VoteForReview(int reviewId, string votee, DateTime date, bool isPositive);
+
+        Task<List<MeetingPlaceViewModel>> SearchPlaces(double lat, double lng, double range, string name, params string[] categories);
     }
 }

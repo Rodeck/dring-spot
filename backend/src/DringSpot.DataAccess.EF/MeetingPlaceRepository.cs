@@ -151,17 +151,7 @@ namespace DringSpot.DataAccess.EF
         {
             var placesIds = await _context.GetPlacesWithin(lat, lon, dist).Select(x => x.Id).ToListAsync();
 
-            return (await _context.Places
-                .Include(x => x.Categories)
-                .Where(x => placesIds.Contains(x.Id)).ToListAsync()).Select(x => 
-                new MeetingPlaceViewModel()
-                {
-                    Id = x.Id,
-                    Categories = x.Categories.Select(y => new CategoryDTO() { Name = y.Category.Name }).ToList(),
-                    Latitude = x.Latitude,
-                    Longitude = x.Longitude,
-                    Name = x.Name,
-                }).ToList();
+            return await GetPlacesByIds(placesIds);
         }
 
         public async Task VoteForReview(int reviewId, string votee, DateTime date, bool isPositive)
@@ -196,6 +186,30 @@ namespace DringSpot.DataAccess.EF
             }
 
             await _context.SaveChangesAsync();
+        }
+
+        public async Task<List<MeetingPlaceViewModel>> SearchPlaces(double lat, double lng, double range, string name, params string[] categories)
+        {
+            var placesIds = await _context.SearchPlaces(lat, lng, range, name, string.Join(",", categories)).Select(x => x.Id).ToListAsync();
+
+            return await GetPlacesByIds(placesIds);
+        }
+
+        private async Task<List<MeetingPlaceViewModel>> GetPlacesByIds(List<int> placesIds)
+        {
+            return (await _context.Places
+                .Include(x => x.Categories)
+                    .ThenInclude(x => x.Category)
+                .Where(x => placesIds.Contains(x.Id)).ToListAsync())
+                .Select(x => 
+                new MeetingPlaceViewModel()
+                {
+                    Id = x.Id,
+                    Categories = x.Categories.Select(y => new CategoryDTO() { Name = y.Category.Name }).ToList(),
+                    Latitude = x.Latitude,
+                    Longitude = x.Longitude,
+                    Name = x.Name,
+                }).ToList();
         }
     }
 }

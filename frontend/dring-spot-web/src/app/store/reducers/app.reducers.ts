@@ -1,6 +1,6 @@
 import { createReducer, on, Action, ActionReducerMap } from "@ngrx/store";
 import { initialState, AppState, BaseState } from '../state/app.state';
-import { placesLoaded, userLoggedIn, showPlaceDetails, hidePlaceDetails, placeLoaded, categoriesLoaded, searchForPlaces } from '../actions/app.actions';
+import { placesLoaded, userLoggedIn, showPlaceDetails, hidePlaceDetails, placeLoaded, categoriesLoaded, searchForPlaces, addressLoaded, placesSearched } from '../actions/app.actions';
 
 const _appReducer = createReducer(initialState,
     on(placesLoaded, (state: AppState, { places }) => 
@@ -8,10 +8,10 @@ const _appReducer = createReducer(initialState,
         ...state,
         places: places
     })),
-    on(searchForPlaces, (state: AppState, {  }) => 
+    on(placesSearched, (state: AppState, { places }) => 
     ({
         ...state,
-        searched: true
+        places: places
     })),
     on(categoriesLoaded, (state: AppState, { categories }) => 
     ({
@@ -32,6 +32,11 @@ const _appReducer = createReducer(initialState,
     ({
         ...state,
         placeDetails: null,
+    })),
+    on(addressLoaded, (state: AppState, { result }) => 
+    ({
+        ...state,
+        currentAddress: result.results[0].formatted_address,
     })),
     on(placeLoaded, (state: AppState, { place }) => 
     ({

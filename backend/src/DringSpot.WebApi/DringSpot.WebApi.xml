@@ -58,6 +58,15 @@
             </summary>
             <returns>Task containing <see cref="T:DringSpot.DataAccess.Models.MeetingPlaceViewModel"/>.</returns>
         </member>
+        <member name="M:DringSpot.WebApi.Controllers.MeetingPlaceController.SearchPlaces(DringSpot.DataAccess.Models.SearchCriteria)">
+            <summary>
+            Get all places that match given criteria:
+            - have all required categories
+            - match searched name (this can be skipped)
+            - are within given range of given localization
+            </summary>
+            <returns>Task containing list of <see cref="T:DringSpot.DataAccess.Models.MeetingPlaceViewModel"/>.</returns>
+        </member>
         <member name="T:DringSpot.WebApi.Controllers.ReviewController">
             <summary>
             Controller for handling actions for <see cref="T:DringSpot.DataAccess.Models.Review"/>.

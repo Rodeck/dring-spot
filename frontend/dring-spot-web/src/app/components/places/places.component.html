@@ -1,19 +1,52 @@
 <div class="row">
     <div class="col">
         <div class="row">
-            <div class="col">
-                <input type="text" class="form-control" placeholder="Localization">
+            <div class="col-8">
+                <input type="text" class="form-control" placeholder="Localization" [formControl]="location">
             </div>
             <div class="col-2">
                 <div class="input-group mb-2">
-                    <input type="text" class="form-control range-input" placeholder="Range">
+                    <input type="text" class="form-control range-input" [(ngModel)]="rangeString">
                     <div class="input-group-append">
                         <div class="input-group-text">
-                            <i class="fas fa-plus vote-button" aria-hidden="true"></i>
-                            <i class="fas fa-minus vote-button" aria-hidden="true"></i>
+                            <i class="fas fa-plus vote-button" aria-hidden="true" (click)="increaseRange()"></i>
+                            <i class="fas fa-minus vote-button" aria-hidden="true" (click)="decreaseRange()"></i>
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="col-1 text-center">
+                or 
+            </div>
+            <div class="col-1 justify-content-center">
+                <button type="button" class="btn btn-success" (click)="getLocation()">Use my localization</button>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-6 text-center font-weight-bold">
+            pick categories
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-10">
+                <div *ngIf="!isFiltered; else elseBlock">
+                    <span *ngFor="let category of categories$ | async" [className]="isSelected(category.name) ? 'badge-success badge category-badge' : 'badge-primary badge category-badge'" (click)="toogleCategory(category)">
+                        #{{category.name}}
+                    </span>
+                </div>
+                <ng-template #elseBlock>
+                    <span *ngFor="let category of filteredCategories$ | async" [className]="isSelected(category.name) ? 'badge-success badge category-badge' : 'badge-primary badge category-badge'" (click)="toogleCategory(category)">
+                        #{{category.name}}
+                    </span>
+                </ng-template>
+            </div>
+            <div class="col-2">
+                <input type="text" class="form-control" placeholder="Filter categories" [formControl]="categoryFilterValue">
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-6 text-center font-weight-bold">
+            or just type name of place you are looking for
             </div>
         </div>
         <div class="row">
@@ -21,21 +54,9 @@
                 <input type="text" class="form-control" placeholder="What are you looking for?">
             </div>
         </div>
-        <div class="row justify-content-center">
-            <div class="col-6 text-center font-weight-bold">
-            or just pick categories
-        </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <span *ngFor="let category of categories | async" class="badge badge-primary">
-                    {{category.name}}
-                </span>
-            </div>
-        </div>
         <div class="row">
             <div class="col-12 justify-content-center">
-                <button type="button" class="btn btn-success" (click)="searchPlaces()">Search</button>
+                <button type="button" class="btn btn-success search-button" (click)="searchPlaces()">Search</button>
             </div>
         </div>
     </div>
@@ -59,7 +80,7 @@
                 <hr/>
             </div>
             <div class="row place-badges col-md-12 ml-sm-auto col-lg-12 px-4">
-                <span *ngFor="let category of place.categories" class="badge badge-primary">
+                <span *ngFor="let category of place.categories$" class="badge badge-primary">
                     {{category.name}}
                 </span>
             </div>

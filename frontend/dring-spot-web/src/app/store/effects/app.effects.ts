@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { createEffect, Actions, ofType } from "@ngrx/effects";
-import { loadPlaces, placesLoaded, userLoggedIn, loadPlace, placeLoaded, loadCategories, categoriesLoaded } from '../actions/app.actions';
+import { loadPlaces, placesLoaded, userLoggedIn, loadPlace, placeLoaded, loadCategories, categoriesLoaded, loadAddress, addressLoaded, searchForPlaces, placesSearched } from '../actions/app.actions';
 import { mergeMap, tap, map, catchError } from 'rxjs/operators';
 import { MeetingPlaceService } from 'src/app/services/categories.service';
 import { Store } from '@ngrx/store';
 import { AppState, BaseState } from '../state/app.state';
 import { EMPTY } from 'rxjs';
+import { MapsService } from 'src/app/services/maps.service';
 
 @Injectable()
 export class AppEffects {
@@ -43,6 +44,29 @@ export class AppEffects {
         { dispatch: false }
     );
 
+
+    loadAddress$ = createEffect(
+        () => this.actions$.pipe(
+            ofType(loadAddress),
+            mergeMap((action) => this.mapsService.getAddress(action.lat, action.lng).pipe(
+                map(result => this.store.dispatch(addressLoaded({ result: result }))),
+                catchError(() => EMPTY)
+            )
+            )),
+        { dispatch: false }
+    );
+
+    searchForPlaces$ = createEffect(
+        () => this.actions$.pipe(
+            ofType(searchForPlaces),
+            mergeMap((action) => this.placeService.searchPlaces(action.criteria).pipe(
+                map(result => this.store.dispatch(placesSearched({ places: result }))),
+                catchError(() => EMPTY)
+            )
+            )),
+        { dispatch: false }
+    );
+
     userLogged$ = createEffect(
         () => this.actions$.pipe(
             ofType(userLoggedIn),
@@ -57,6 +81,7 @@ export class AppEffects {
     constructor(
         private actions$: Actions,
         private placeService: MeetingPlaceService,
+        private mapsService: MapsService,
         private store: Store<BaseState>
     ) { }
 }

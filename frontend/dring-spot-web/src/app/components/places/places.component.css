@@ -12,3 +12,16 @@ margin-left: 3px;
     background-color: #3F51B5;
     margin-bottom: 20px;
 }
+
+.category-badge {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.vote-button {
+  cursor: pointer;
+}
+
+.search-button {
+  margin-top: 10px;
+}

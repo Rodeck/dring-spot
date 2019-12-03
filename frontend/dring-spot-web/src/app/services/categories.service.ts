@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Category } from '../models/category.model';
 import { HttpClient } from '@angular/common/http';
 import { MeetingPlace } from '../models/meeting-place.model';
+import { SerachPlaceModel } from '../models/search-place.model';
 
 @Injectable({
   providedIn: 'root'
@@ -45,5 +46,9 @@ export class MeetingPlaceService {
 
   getPlace(id: number): Observable<MeetingPlace> {
     return this.client.get<MeetingPlace>(this.baseUrl + "/" + id);
+  }
+
+  searchPlaces(criteria: SerachPlaceModel): Observable<MeetingPlace[]> {
+    return this.client.post<MeetingPlace[]>(this.baseUrl + "/Search", criteria);
   }
 }

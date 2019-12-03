@@ -109,6 +109,36 @@
             Gets or sets text of this review.
             </summary>
         </member>
+        <member name="T:DringSpot.DataAccess.Models.SearchCriteria">
+            <summary>
+            Criteria for searching places.
+            </summary>
+        </member>
+        <member name="P:DringSpot.DataAccess.Models.SearchCriteria.Lat">
+            <summary>
+            Latitude.
+            </summary>
+        </member>
+        <member name="P:DringSpot.DataAccess.Models.SearchCriteria.Lng">
+            <summary>
+            Longitude.
+            </summary>
+        </member>
+        <member name="P:DringSpot.DataAccess.Models.SearchCriteria.Range">
+            <summary>
+            Given range.
+            </summary>
+        </member>
+        <member name="P:DringSpot.DataAccess.Models.SearchCriteria.Name">
+            <summary>
+            Containing this name.
+            </summary>
+        </member>
+        <member name="P:DringSpot.DataAccess.Models.SearchCriteria.Categories">
+            <summary>
+            With all those categories.
+            </summary>
+        </member>
         <member name="T:DringSpot.DataAccess.Models.VoteDTO">
             <summary>
             Data transportation object for vote.

@@ -8,6 +8,7 @@ export interface AppState {
     placeDetails: MeetingPlace,
     categories: Category[],
     searched: boolean;
+    currentAddress?: string;
 };
 
 export const initialState: AppState = retrieveState() !== null ? retrieveState() : 

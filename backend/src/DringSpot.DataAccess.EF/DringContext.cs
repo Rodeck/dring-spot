@@ -38,5 +38,16 @@ namespace DringSpot.DataAccess.EF
             
             return PlacesWithin.FromSqlRaw("exec getPlacesWithinRange @long, @lat, @range", lonParam, longParam, distanceParam);
         }
+
+        public IQueryable<PlaceWithinFindModel> SearchPlaces(double lat, double lng, double range, string name, string categories)
+        {
+            var lonParam = new SqlParameter("@lng", lng);
+            var longParam = new SqlParameter("@lat", lat);
+            var distanceParam = new SqlParameter("@range", range);
+            var nameParam = new SqlParameter("@name", name);
+            var categoriesParam = new SqlParameter("@categories", categories);
+            
+            return PlacesWithin.FromSqlRaw("exec searchForPlaces @lng, @lat, @range, @name, @categories", lonParam, longParam, distanceParam, nameParam, categoriesParam);
+        }
     }
 }

@@ -30,5 +30,9 @@ export const selectCategories = createSelector(
     (app: AppState): Category[] => app.categories
 );
 
+export const selectAddress = createSelector(
+    selectState,
+    (app: AppState): string => app.currentAddress
+);
 
 

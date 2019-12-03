@@ -110,5 +110,22 @@ namespace DringSpot.WebApi.Controllers
             _logger.LogInformation($"{nameof(GetPlace)} UID: {uid}");
             return _repository.GetPlace(id);
         }
+
+
+        /// <summary>
+        /// Get all places that match given criteria:
+        /// - have all required categories
+        /// - match searched name (this can be skipped)
+        /// - are within given range of given localization
+        /// </summary>
+        /// <returns>Task containing list of <see cref="MeetingPlaceViewModel"/>.</returns>
+        [HttpPost]
+        [Route("Search")]
+        public Task<List<MeetingPlaceViewModel>> SearchPlaces([FromBody] SearchCriteria criteria)
+        {
+            var uid = GetUserId();
+            _logger.LogInformation($"{nameof(GetPlace)} UID: {uid}");
+            return _repository.SearchPlaces(criteria.Lat, criteria.Lng, criteria.Range, criteria.Name, criteria.Categories);
+        }
     }
 }

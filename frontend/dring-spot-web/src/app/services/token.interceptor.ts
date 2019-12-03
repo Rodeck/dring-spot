@@ -11,12 +11,14 @@ import { Observable } from 'rxjs';
 export class TokenInterceptor implements HttpInterceptor {
   constructor(public auth: AuthService) {}
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    
-    request = request.clone({
-      setHeaders: {
-        Authorization: `Bearer ${this.auth.GetToken()}`
-      }
-    });
+    if (request.url.indexOf('maps.googleapis.com') == -1 )
+    {
+      request = request.clone({
+        setHeaders: {
+          Authorization: `Bearer ${this.auth.GetToken()}`
+        }
+      });
+    }
     return next.handle(request);
   }
 }
