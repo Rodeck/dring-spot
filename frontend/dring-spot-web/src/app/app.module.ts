@@ -29,7 +29,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { PlacesComponent } from './components/places/places.component';
 import { TokenInterceptor } from './services/token.interceptor';
 import { PlaceDetailsComponent } from './components/place-details/place-details.component';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { StoreModule } from '@ngrx/store';
 import { reducer, appReducers } from './store/reducers/app.reducers';
@@ -68,14 +68,25 @@ import { StoreDevtoolsModule } from "@ngrx/store-devtools";
     EffectsModule.forRoot([AppEffects]),
     environment.production ? [] : StoreDevtoolsModule.instrument()
   ],
-  providers: [AuthService, {
+  providers: [AuthService, 
+    {
       provide: 'BASE_URL', 
       useValue: environment.baseUrl
     },     
-    { provide: HTTP_INTERCEPTORS,
-    useClass: TokenInterceptor,
-    multi: true
-  }],
+    { 
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    },
+    {
+      provide: 'MAPS_URL', 
+      useValue: environment.mapsUrl
+    },
+    {
+      provide: 'MAPS_APIKEY', 
+      useValue: environment.mapKey
+    }
+  ],
   bootstrap: [AppComponent],
   entryComponents: [ PlaceDetailsComponent ]
 })
