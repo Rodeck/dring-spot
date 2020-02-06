@@ -50,7 +50,7 @@ namespace DringSpot.DataAccess.EF
                 .FindAsync(userId);
 
             user.Friends.Add(new Friend() {
-                FriendId = friend.UserId
+                FriendId = friend.Uid
             });
 
             await _context.SaveChangesAsync();

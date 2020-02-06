@@ -1,6 +1,8 @@
 import { UserModel } from 'src/app/models/user.model';
 import { MeetingPlace } from 'src/app/models/meeting-place.model';
 import { Category } from 'src/app/models/category.model';
+import { EventModel } from 'src/app/models/event.model';
+
 
 export interface AppState {
     user: UserModel;

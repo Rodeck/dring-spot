@@ -5,6 +5,7 @@ import { Category } from '../models/category.model';
 import { HttpClient } from '@angular/common/http';
 import { MeetingPlace } from '../models/meeting-place.model';
 import { SerachPlaceModel } from '../models/search-place.model';
+import { EventModel } from '../models/event.model';
 
 @Injectable({
   providedIn: 'root'
@@ -50,5 +51,9 @@ export class MeetingPlaceService {
 
   searchPlaces(criteria: SerachPlaceModel): Observable<MeetingPlace[]> {
     return this.client.post<MeetingPlace[]>(this.baseUrl + "/Search", criteria);
+  }
+
+  loadEvents(): Observable<EventModel[]> {
+    return this.client.get<EventModel[]>(this.url + "/Users/getEvents");
   }
 }
