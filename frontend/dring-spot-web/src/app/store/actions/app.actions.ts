@@ -4,6 +4,7 @@ import { UserModel } from 'src/app/models/user.model';
 import { Category } from 'src/app/models/category.model';
 import { ReverseGeocodingResult } from 'src/app/models/reverse-geocoding.model';
 import { SerachPlaceModel } from 'src/app/models/search-place.model';
+import { EventModel } from 'src/app/models/event.model';
 
 export const userLoggedIn = createAction('[User] Logged in', props<{ user: UserModel}>());
 export const loadPlaces = createAction('[Place] Load places');

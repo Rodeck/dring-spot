@@ -4,6 +4,6 @@ namespace DringSpot.DataAccess.Models
     {
         public int Id { get; set; }
 
-        public int FriendId { get; set; }
+        public string FriendId { get; set; }
     }
 }

@@ -1,6 +1,6 @@
 import { createReducer, on, Action, ActionReducerMap } from "@ngrx/store";
 import { initialState, AppState, BaseState } from '../state/app.state';
-import { placesLoaded, userLoggedIn, showPlaceDetails, hidePlaceDetails, placeLoaded, categoriesLoaded, searchForPlaces, addressLoaded, placesSearched } from '../actions/app.actions';
+import { placesLoaded, userLoggedIn, showPlaceDetails, hidePlaceDetails, placeLoaded, categoriesLoaded, searchForPlaces, addressLoaded, placesSearched, eventsLoaded } from '../actions/app.actions';
 
 const _appReducer = createReducer(initialState,
     on(placesLoaded, (state: AppState, { places }) => 
@@ -46,6 +46,11 @@ const _appReducer = createReducer(initialState,
             if (x.id == place.id) return place;
             return x;
         }),
+    })),
+    on(eventsLoaded, (state: AppState, { events }) => 
+    ({
+        ...state,
+        events: events,
     })),
 );
 

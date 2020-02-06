@@ -2,6 +2,7 @@ import { createSelector } from '@ngrx/store';
 import { AppState, BaseState } from '../state/app.state';
 import { MeetingPlace } from 'src/app/models/meeting-place.model';
 import { Category } from 'src/app/models/category.model';
+import { EventModel } from 'src/app/models/event.model';
 
 export const selectState = (state: BaseState): AppState => state.appState;
 
@@ -34,5 +35,4 @@ export const selectAddress = createSelector(
     selectState,
     (app: AppState): string => app.currentAddress
 );
-
 
