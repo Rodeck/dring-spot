@@ -36,7 +36,6 @@ import { reducer, appReducers } from './store/reducers/app.reducers';
 import { EffectsModule } from '@ngrx/effects';
 import { AppEffects } from './store/effects/app.effects';
 import { StoreDevtoolsModule } from "@ngrx/store-devtools";
-import { EventsComponent } from './components/events/events.component';
 
 
 @NgModule({
@@ -51,7 +50,6 @@ import { EventsComponent } from './components/events/events.component';
     PlacesComponent,
     PlaceDetailsComponent,
     UserProfileComponent,
-    EventsComponent
   ],
   imports: [
     BrowserModule,
