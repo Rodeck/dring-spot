@@ -61,7 +61,7 @@
         </div>
     </div>
 </div>
-<div class="row" *ngIf="searchedPlaces$ | async as places">
+<div class="row" *ngIf="searchedPlaces$ | async as places" style="margin-top: 10px;">
     <div class="col-md-7 ml-sm-auto col-lg-6 px-4">
         <agm-map [latitude]="lat" [longitude]="lng" (mapClick)="moveMarker($event.coords.lat, $event.coords.lng)">
             <agm-marker *ngFor='let place of places' [latitude]="place.latitude" [longitude]="place.longitude" [markerDraggable]="false">

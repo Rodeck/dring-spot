@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { createEffect, Actions, ofType } from "@ngrx/effects";
-import { loadPlaces, placesLoaded, userLoggedIn, loadPlace, placeLoaded, loadCategories, categoriesLoaded, loadAddress, addressLoaded, searchForPlaces, placesSearched, loadEvents, eventsLoaded } from '../actions/app.actions';
+import { loadPlaces, placesLoaded, userLoggedIn, loadPlace, placeLoaded, loadCategories, categoriesLoaded, loadAddress, addressLoaded, searchForPlaces, placesSearched } from '../actions/app.actions';
 import { mergeMap, tap, map, catchError } from 'rxjs/operators';
 import { MeetingPlaceService } from 'src/app/services/categories.service';
 import { Store } from '@ngrx/store';
